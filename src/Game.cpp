@@ -1,6 +1,7 @@
 #include "Game.hpp"
 #include <SDL.h>
 #include <stdio.h>
+int bgcolor[] = {0, 255, 255, 255};
 SDL_Window* wndw;
 SDL_Renderer* ren;
 Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
@@ -20,7 +21,11 @@ Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
         return;
     }
 }
-void Game::update() { }
+void Game::update() {
+    SDL_SetRenderDrawColor(ren, bgcolor[0], bgcolor[1], bgcolor[2], bgcolor[3]);
+    SDL_RenderClear(ren);
+    SDL_RenderPresent(ren);
+}
 void Game::clean() {
     SDL_DestroyRenderer(ren);
     SDL_DestroyWindow(wndw);
