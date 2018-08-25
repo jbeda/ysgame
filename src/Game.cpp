@@ -9,7 +9,6 @@ SDL_Renderer* ren;
 Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
     SDL_Init(SDL_INIT_EVERYTHING);
     IMG_Init(IMG_INIT_PNG);
-    this->plr = Character("assets\\Player.png", 0, 0, 15, 15, ren);
     unsigned int flags = 0;
     if (fullscreen)
         flags = SDL_WINDOW_FULLSCREEN;
@@ -24,12 +23,15 @@ Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
         this->rtrnVal = CODE_RED;
         return;
     }
+    this->plr = new Character("assets\\Player.png", 0, 0, 15, 15, ren);
+    this->rtrnVal = CODE_GREEN;
 }
 void Game::update() {
     this->count++;
-    plr.setX(this->count);
+    this->plr->setX(this->count);
 }
 void Game::clean() {
+    delete this->plr;
     SDL_DestroyRenderer(ren);
     SDL_DestroyWindow(wndw);
     IMG_Quit();
@@ -46,6 +48,6 @@ int Game::handleEvents() {
 void Game::render() {
     SDL_SetRenderDrawColor(ren, bgcolor[0], bgcolor[1], bgcolor[2], bgcolor[3]);
     SDL_RenderClear(ren);
-    SDL_RenderCopy(ren, this->plr.getImage(), NULL, this->plr.getLocation());
+    SDL_RenderCopy(ren, this->plr->getImage(), NULL, this->plr->getLocation());
     SDL_RenderPresent(ren);
 }

@@ -28,6 +28,6 @@ public:
 private:
     int count;
     ReturnCode rtrnVal;
-    Character plr;
+    Character* plr;
 };
 #endif
