@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <stdio.h>
 #include "Game.hpp"
+#include "Character.hpp"
 
 int main(int argc, char const *argv[]) {
     Game* game = new Game("ys-game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, false);

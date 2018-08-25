@@ -1,6 +1,8 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
+class Character;
+
 // WINDOW SIZE
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
@@ -26,5 +28,6 @@ public:
 private:
     int count;
     ReturnCode rtrnVal;
+    Character plr;
 };
 #endif
