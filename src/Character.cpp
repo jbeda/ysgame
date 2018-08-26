@@ -1,5 +1,6 @@
 #include "Character.hpp"
 #include <SDL_image.h>
+#include <stdio.h>
 
 Character::Character(const char* imgPath, int x, int y, int w, int h, SDL_Renderer* ren) {
     this->curLoc = new SDL_Rect();

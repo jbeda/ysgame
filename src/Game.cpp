@@ -33,7 +33,7 @@ Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
         this->rtrnVal = CODE_RED;
         return;
     }
-    this->plr = new Character("assets\\Player.png", 0, 0, 15, 15, ren);
+    this->plr = new Character("assets\\Player.png", 0, 0, 100, 100, ren);
     this->rtrnVal = CODE_GREEN;
 }
 void Game::update() {
