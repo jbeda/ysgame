@@ -3,12 +3,22 @@
 #include <stdio.h>
 #include <SDL_image.h>
 #include "Character.hpp"
+
 int bgcolor[] = {0, 255, 255, 255};
 SDL_Window* wndw;
 SDL_Renderer* ren;
+
 Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
+	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
     SDL_Init(SDL_INIT_EVERYTHING);
-    IMG_Init(IMG_INIT_PNG);
+	
+	int imgFlags = IMG_INIT_PNG;
+	if (!(IMG_Init(imgFlags) & imgFlags))
+	{
+		printf("SDL_image could not initialize! IMG_Init Error: %s\n", IMG_GetError());
+		this->rtrnVal = CODE_RED;
+	}
+
     unsigned int flags = 0;
     if (fullscreen)
         flags = SDL_WINDOW_FULLSCREEN;
@@ -48,6 +58,9 @@ int Game::handleEvents() {
 void Game::render() {
     SDL_SetRenderDrawColor(ren, bgcolor[0], bgcolor[1], bgcolor[2], bgcolor[3]);
     SDL_RenderClear(ren);
-    SDL_RenderCopy(ren, this->plr->getImage(), NULL, this->plr->getLocation());
+	if (SDL_RenderCopy(ren, this->plr->getImage(), NULL, this->plr->getLocation())) {
+		printf("Error calling SDL_RenderCopy: %s\n", SDL_GetError());
+	}
+
     SDL_RenderPresent(ren);
 }

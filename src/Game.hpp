@@ -26,7 +26,7 @@ public:
     void render();
     ReturnCode constrReturnValue() { return this->rtrnVal; }
 private:
-    int count;
+    int count = 0;
     ReturnCode rtrnVal;
     Character* plr;
 };

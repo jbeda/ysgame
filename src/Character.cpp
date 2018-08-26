@@ -7,9 +7,16 @@ Character::Character(const char* imgPath, int x, int y, int w, int h, SDL_Render
     this->setY(y);
     this->setWidth(w);
     this->setHeight(h);
+
     SDL_Surface* tmpSurface = IMG_Load(imgPath);
+	if (tmpSurface == NULL) {
+		printf("Error loading image %s: %s\n", imgPath, IMG_GetError());
+	}
     this->img = SDL_CreateTextureFromSurface(ren, tmpSurface);
-    delete tmpSurface;
+	if (this->img == NULL) {
+		printf("Error creating texture %s: %s\n", imgPath, SDL_GetError());
+	}
+    SDL_FreeSurface(tmpSurface);
 }
 Character::~Character() {
     delete this->curLoc;
