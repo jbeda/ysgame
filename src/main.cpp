@@ -2,7 +2,6 @@
 #include <SDL.h>
 #include <stdio.h>
 #include "Game.hpp"
-#include "Character.hpp"
 
 #define FPS 60 // for now
 #define FRAME_DELAY 1000 / FPS

@@ -1,7 +1,7 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-class Character;
+class GameObject;
 
 // WINDOW SIZE
 #define WINDOW_WIDTH 800
@@ -28,6 +28,6 @@ public:
 private:
     int count = 0;
     ReturnCode rtrnVal;
-    Character* plr;
+    GameObject* plr;
 };
 #endif

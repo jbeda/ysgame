@@ -2,22 +2,22 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <SDL_image.h>
-#include "Character.hpp"
+#include "GameObject.hpp"
 
 int bgcolor[] = {0, 255, 255, 255};
 SDL_Window* wndw;
 SDL_Renderer* ren;
 
 Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
-	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
+    SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
     SDL_Init(SDL_INIT_EVERYTHING);
-	
-	int imgFlags = IMG_INIT_PNG;
-	if (!(IMG_Init(imgFlags) & imgFlags))
-	{
-		printf("SDL_image could not initialize! IMG_Init Error: %s\n", IMG_GetError());
-		this->rtrnVal = CODE_RED;
-	}
+    
+    int imgFlags = IMG_INIT_PNG;
+    if (!(IMG_Init(imgFlags) & imgFlags))
+    {
+        printf("SDL_image could not initialize! IMG_Init Error: %s\n", IMG_GetError());
+        this->rtrnVal = CODE_RED;
+    }
 
     unsigned int flags = 0;
     if (fullscreen)
@@ -33,13 +33,22 @@ Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
         this->rtrnVal = CODE_RED;
         return;
     }
-    this->plr = new Character("assets\\Player.png", 0, 0, 100, 100, ren);
+    this->plr = new GameObject("assets\\Player.png", 0, 0, ren);
     this->rtrnVal = CODE_GREEN;
 }
 void Game::update() {
-    this->count++;
-    this->plr->setX(this->count);
+    this->plr->Update();
 }
+
+void Game::render() {
+    SDL_SetRenderDrawColor(ren, bgcolor[0], bgcolor[1], bgcolor[2], bgcolor[3]);
+    SDL_RenderClear(ren);
+
+    this->plr->Render();
+
+    SDL_RenderPresent(ren);
+}
+
 void Game::clean() {
     delete this->plr;
     SDL_DestroyRenderer(ren);
@@ -54,13 +63,4 @@ int Game::handleEvents() {
             return EVENT_QUIT;
     }
     return EVENT_NOTHING;
-}
-void Game::render() {
-    SDL_SetRenderDrawColor(ren, bgcolor[0], bgcolor[1], bgcolor[2], bgcolor[3]);
-    SDL_RenderClear(ren);
-	if (SDL_RenderCopy(ren, this->plr->getImage(), NULL, this->plr->getLocation())) {
-		printf("Error calling SDL_RenderCopy: %s\n", SDL_GetError());
-	}
-
-    SDL_RenderPresent(ren);
 }
