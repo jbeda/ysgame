@@ -1,6 +1,7 @@
 #include "Character.hpp"
 #include <SDL_image.h>
 #include <stdio.h>
+#include "TextureManager.hpp"
 
 Character::Character(const char* imgPath, int x, int y, int w, int h, SDL_Renderer* ren) {
     this->curLoc = new SDL_Rect();
@@ -8,16 +9,7 @@ Character::Character(const char* imgPath, int x, int y, int w, int h, SDL_Render
     this->setY(y);
     this->setWidth(w);
     this->setHeight(h);
-
-    SDL_Surface* tmpSurface = IMG_Load(imgPath);
-	if (tmpSurface == NULL) {
-		printf("Error loading image %s: %s\n", imgPath, IMG_GetError());
-	}
-    this->img = SDL_CreateTextureFromSurface(ren, tmpSurface);
-	if (this->img == NULL) {
-		printf("Error creating texture %s: %s\n", imgPath, SDL_GetError());
-	}
-    SDL_FreeSurface(tmpSurface);
+    this->img = TextureManager::LoadTexture(imgPath, ren);
 }
 Character::~Character() {
     delete this->curLoc;
