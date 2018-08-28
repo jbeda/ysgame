@@ -5,7 +5,7 @@
 
 class GameObject {
 public:
-    GameObject(const char* texFile, int x, int y, SDL_Renderer* ren);
+    GameObject(const char* texFile, int x, int y);
     ~GameObject();
 
     SDL_Rect* getLocation() { return &(this->destRect); }
@@ -19,7 +19,6 @@ private:
     SDL_Rect srcRect;
     SDL_Rect destRect;
     SDL_Texture* img;
-    SDL_Renderer* renderer;
 };
 
 #endif

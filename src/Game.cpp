@@ -3,23 +3,22 @@
 #include <stdio.h>
 #include <SDL_image.h>
 #include "GameObject.hpp"
+#include "Map.hpp"
 
-int bgcolor[] = {0, 255, 255, 255};
+int bgcolor[] = {255, 255, 255, 255};
 SDL_Window* wndw;
-SDL_Renderer* ren;
 GameObject* enemy1;
+Map* map;
 
 Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
     SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
     SDL_Init(SDL_INIT_EVERYTHING);
-    
     int imgFlags = IMG_INIT_PNG;
     if (!(IMG_Init(imgFlags) & imgFlags))
     {
         printf("SDL_image could not initialize! IMG_Init Error: %s\n", IMG_GetError());
         this->rtrnVal = CODE_RED;
     }
-
     unsigned int flags = 0;
     if (fullscreen)
         flags = SDL_WINDOW_FULLSCREEN;
@@ -28,14 +27,15 @@ Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
         this->rtrnVal = CODE_RED;
         return;
     }
-    ren = SDL_CreateRenderer(wndw, -1, SDL_RENDERER_PRESENTVSYNC);
-    if (ren == NULL) {
+    renderer = SDL_CreateRenderer(wndw, -1, SDL_RENDERER_PRESENTVSYNC);
+    if (renderer == NULL) {
         SDL_DestroyWindow(wndw);
         this->rtrnVal = CODE_RED;
         return;
     }
-    this->plr = new GameObject("Player.png", 0, 0, ren);
-    enemy1 = new GameObject("Enemy.png", 50, 50, ren);
+    map = new Map();
+    this->plr = new GameObject("Player.png", 0, 0);
+    enemy1 = new GameObject("Enemy.png", 50, 50);
     this->rtrnVal = CODE_GREEN;
 }
 void Game::update() {
@@ -44,19 +44,20 @@ void Game::update() {
 }
 
 void Game::render() {
-    SDL_SetRenderDrawColor(ren, bgcolor[0], bgcolor[1], bgcolor[2], bgcolor[3]);
-    SDL_RenderClear(ren);
-
+    SDL_SetRenderDrawColor(renderer, bgcolor[0], bgcolor[1], bgcolor[2], bgcolor[3]);
+    SDL_RenderClear(renderer);
+    map->DrawMap();
     this->plr->Render();
     enemy1->Render();
 
-    SDL_RenderPresent(ren);
+    SDL_RenderPresent(renderer);
 }
 
 void Game::clean() {
+    delete map;
     delete this->plr;
     delete enemy1;
-    SDL_DestroyRenderer(ren);
+    SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(wndw);
     IMG_Quit();
     SDL_Quit();
@@ -69,3 +70,4 @@ int Game::handleEvents() {
     }
     return EVENT_NOTHING;
 }
+SDL_Renderer* Game::renderer = NULL;

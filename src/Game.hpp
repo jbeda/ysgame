@@ -1,11 +1,13 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
+#include <SDL.h>
+
 class GameObject;
 
 // WINDOW SIZE
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
+#define WINDOW_WIDTH 640
+#define WINDOW_HEIGHT WINDOW_WIDTH
 
 // EVENT CODES
 #define EVENT_QUIT 0x1
@@ -25,8 +27,8 @@ public:
     void update();
     void render();
     ReturnCode constrReturnValue() { return this->rtrnVal; }
+    static SDL_Renderer* renderer;
 private:
-    int count = 0;
     ReturnCode rtrnVal;
     GameObject* plr;
 };

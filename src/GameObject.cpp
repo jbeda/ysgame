@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include "GameObject.hpp"
 #include "TextureManager.hpp"
+#include "Game.hpp"
 
-GameObject::GameObject(const char* imgPath, int x, int y, SDL_Renderer* ren) {
-    this->renderer = ren;
+GameObject::GameObject(const char* imgPath, int x, int y) {
 
-    this->img = TextureManager::LoadTexture(imgPath, ren);
+    this->img = TextureManager::LoadTexture(imgPath);
 
     SDL_QueryTexture(this->img, NULL, NULL, &(this->srcRect.w), &(this->srcRect.h));
 
@@ -24,7 +24,7 @@ void GameObject::Update() {
 }
 
 void GameObject::Render() {
-    if (SDL_RenderCopy(this->renderer, this->img, &(this->srcRect), &(this->destRect))) {
+    if (SDL_RenderCopy(Game::renderer, this->img, &(this->srcRect), &(this->destRect))) {
         printf("Error calling SDL_RenderCopy: %s\n", SDL_GetError());
     }
 }
