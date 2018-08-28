@@ -54,8 +54,8 @@ void Map::DrawMap() {
     int type;
     for (auto r = 0; r < 20; r++) {
         for (auto c = 0; c < 20; c++) {
-            this->dest.x = (c * 32) + 1;
-            this->dest.y = (r * 32) + 1;
+            this->dest.x = c * 32;
+            this->dest.y = r * 32;
             type = this->map[r][c];
             switch (type) {
                 case DIRT:
