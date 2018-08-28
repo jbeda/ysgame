@@ -20,6 +20,7 @@ GameObject::GameObject(const char* imgPath, int x, int y, SDL_Renderer* ren) {
 
 void GameObject::Update() {
     this->destRect.x++;
+    this->destRect.y++;
 }
 
 void GameObject::Render() {
@@ -29,6 +30,5 @@ void GameObject::Render() {
 }
 
 GameObject::~GameObject() {
-
     SDL_DestroyTexture(this->img);
 }

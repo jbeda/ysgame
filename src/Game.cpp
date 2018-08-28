@@ -7,6 +7,7 @@
 int bgcolor[] = {0, 255, 255, 255};
 SDL_Window* wndw;
 SDL_Renderer* ren;
+GameObject* enemy1;
 
 Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
     SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
@@ -33,11 +34,13 @@ Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
         this->rtrnVal = CODE_RED;
         return;
     }
-    this->plr = new GameObject("assets\\Player.png", 0, 0, ren);
+    this->plr = new GameObject("Player.png", 0, 0, ren);
+    enemy1 = new GameObject("Enemy.png", 50, 50, ren);
     this->rtrnVal = CODE_GREEN;
 }
 void Game::update() {
     this->plr->Update();
+    enemy1->Update();
 }
 
 void Game::render() {
@@ -45,12 +48,14 @@ void Game::render() {
     SDL_RenderClear(ren);
 
     this->plr->Render();
+    enemy1->Render();
 
     SDL_RenderPresent(ren);
 }
 
 void Game::clean() {
     delete this->plr;
+    delete enemy1;
     SDL_DestroyRenderer(ren);
     SDL_DestroyWindow(wndw);
     IMG_Quit();
