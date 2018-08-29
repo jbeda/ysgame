@@ -1,20 +1,37 @@
 #ifndef MAP_HPP
 #define MAP_HPP
+
 #include <SDL.h>
+#include <string>
+#include <vector>
+
+struct Tile {
+    int tile = -1;
+    int flipX = false;
+    int rot = 0;
+};
+
+using TileLayer = std::vector<Tile>;
+
 class Map {
 public:
-    Map();
+    Map(std::string& mapName);
     ~Map();
-    void LoadMap(int map[20][20]);
+
     void DrawMap();
 private:
-    SDL_Rect src, dest;
-    SDL_Texture* dirt;
-    SDL_Texture* grass;
-    SDL_Texture* water;
-    SDL_Texture* stone;
-    SDL_Texture* stonebg;
-    int map[20][25];
+    void LoadMap(std::string& mapName);
+    int TileIndexFromRC(int col, int row);
+    void DrawTile(Tile& t, SDL_Rect& dest);
+
+    SDL_Texture* tileset;
+
+    int rows = 0;
+    int cols = 0;
+    int tilewidth = 0;
+    int tileheight = 0;
+
+    std::vector<TileLayer> layers;
 };
 
 #endif

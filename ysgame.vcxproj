@@ -69,6 +69,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);third_party</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);third_party</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -111,13 +117,52 @@
     <ClInclude Include="src\Game.hpp" />
     <ClInclude Include="src\Map.hpp" />
     <ClInclude Include="src\TextureManager.hpp" />
-    <ClInclude Include="src\Vector2D.h" />
+    <ClInclude Include="src\Vector2D.hpp" />
+    <ClInclude Include="third_party\nlohmann\json.hpp" />
+    <ClInclude Include="third_party\rapidjson\allocators.h" />
+    <ClInclude Include="third_party\rapidjson\cursorstreamwrapper.h" />
+    <ClInclude Include="third_party\rapidjson\document.h" />
+    <ClInclude Include="third_party\rapidjson\encodedstream.h" />
+    <ClInclude Include="third_party\rapidjson\encodings.h" />
+    <ClInclude Include="third_party\rapidjson\error\en.h" />
+    <ClInclude Include="third_party\rapidjson\error\error.h" />
+    <ClInclude Include="third_party\rapidjson\filereadstream.h" />
+    <ClInclude Include="third_party\rapidjson\filewritestream.h" />
+    <ClInclude Include="third_party\rapidjson\fwd.h" />
+    <ClInclude Include="third_party\rapidjson\internal\biginteger.h" />
+    <ClInclude Include="third_party\rapidjson\internal\diyfp.h" />
+    <ClInclude Include="third_party\rapidjson\internal\dtoa.h" />
+    <ClInclude Include="third_party\rapidjson\internal\ieee754.h" />
+    <ClInclude Include="third_party\rapidjson\internal\itoa.h" />
+    <ClInclude Include="third_party\rapidjson\internal\meta.h" />
+    <ClInclude Include="third_party\rapidjson\internal\pow10.h" />
+    <ClInclude Include="third_party\rapidjson\internal\regex.h" />
+    <ClInclude Include="third_party\rapidjson\internal\stack.h" />
+    <ClInclude Include="third_party\rapidjson\internal\strfunc.h" />
+    <ClInclude Include="third_party\rapidjson\internal\strtod.h" />
+    <ClInclude Include="third_party\rapidjson\internal\swap.h" />
+    <ClInclude Include="third_party\rapidjson\istreamwrapper.h" />
+    <ClInclude Include="third_party\rapidjson\memorybuffer.h" />
+    <ClInclude Include="third_party\rapidjson\memorystream.h" />
+    <ClInclude Include="third_party\rapidjson\msinttypes\inttypes.h" />
+    <ClInclude Include="third_party\rapidjson\msinttypes\stdint.h" />
+    <ClInclude Include="third_party\rapidjson\ostreamwrapper.h" />
+    <ClInclude Include="third_party\rapidjson\pointer.h" />
+    <ClInclude Include="third_party\rapidjson\prettywriter.h" />
+    <ClInclude Include="third_party\rapidjson\rapidjson.h" />
+    <ClInclude Include="third_party\rapidjson\reader.h" />
+    <ClInclude Include="third_party\rapidjson\schema.h" />
+    <ClInclude Include="third_party\rapidjson\stream.h" />
+    <ClInclude Include="third_party\rapidjson\stringbuffer.h" />
+    <ClInclude Include="third_party\rapidjson\writer.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\Enemy.png" />
+    <Image Include="assets\lvl1.png" />
     <Image Include="assets\Player.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\lvl1.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
