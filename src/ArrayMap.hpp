@@ -2,20 +2,24 @@
 #define ARRAYMAP_HPP
 #include <SDL.h>
 #include "Map.hpp"
+#include <vector>
 class ArrayMap : public Map {
 public:
     ArrayMap();
     ~ArrayMap();
-    void LoadMap(int map[20][20]);
+    void LoadMap();
     void DrawMap();
 private:
+    int tileRows = 0;
+    int tileCols = 0;
+
     SDL_Rect src, dest;
     SDL_Texture* dirt;
     SDL_Texture* grass;
     SDL_Texture* water;
     SDL_Texture* stone;
     SDL_Texture* stonebg;
-    int map[20][25];
+    std::vector<std::vector<int>> tiles;
 };
 
 #endif
