@@ -105,6 +105,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ArrayMap.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -113,6 +114,7 @@
     <ClCompile Include="src\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ArrayMap.hpp" />
     <ClInclude Include="src\GameObject.hpp" />
     <ClInclude Include="src\Game.hpp" />
     <ClInclude Include="src\Map.hpp" />
@@ -163,6 +165,7 @@
     <Image Include="assets\Player.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Downloads\map.json" />
     <None Include="assets\lvl1.json" />
     <None Include="packages.config" />
   </ItemGroup>

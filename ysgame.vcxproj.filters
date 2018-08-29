@@ -30,10 +30,10 @@
     <ClCompile Include="src\Vector2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Map.cpp">
+    <ClCompile Include="src\PyxelMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\PyxelMap.cpp">
+    <ClCompile Include="src\ArrayMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -167,6 +167,9 @@
     <ClInclude Include="src\PyxelMap.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\ArrayMap.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\Player.png">
@@ -182,5 +185,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="assets\lvl1.json" />
+    <None Include="..\..\Downloads\map.json" />
   </ItemGroup>
 </Project>
