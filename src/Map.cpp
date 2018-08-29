@@ -45,7 +45,7 @@ void from_json(const nlohmann::json& j, JsonTile& t) {
     JSON_VALIDATE_REQUIRED(j, index, is_number);
     JSON_VALIDATE_REQUIRED(j, x, is_number_unsigned);
     JSON_VALIDATE_REQUIRED(j, y, is_number_unsigned);
-    JSON_VALIDATE_REQUIRED(j, tile, is_number_unsigned);
+    JSON_VALIDATE_REQUIRED(j, tile, is_number);
     JSON_VALIDATE_REQUIRED(j, flipX, is_boolean);
     JSON_VALIDATE_REQUIRED(j, rot, is_number);
 
@@ -110,17 +110,28 @@ void Map::LoadMap(std::string& mapName) {
 
     for (auto idxLayer = 0; idxLayer < m.layers.size(); idxLayer++) {
         auto& il = m.layers[idxLayer];
-        auto& ol = this->layers[idxLayer];
+        auto& ol = this->layers[il.number];
 
-        ol.resize(this->cols * this->rows);
+        ol.name = il.name;
+        ol.number = il.number;
+
+        if (ol.name == "bounds") {
+            ol.hide = true;
+            ol.solid = true;
+        }
+
+        ol.tiles.resize(this->cols * this->rows);
 
         for (auto& it : il.tiles) {
-            Tile& ot = ol[this->TileIndexFromRC(it.x, it.y)];
+            Tile& ot = ol.tiles[this->TileIndexFromRC(it.x, it.y)];
             ot.tile = it.tile;
             ot.flipX = it.flipX;
             ot.rot = it.rot;
         }
     }
+
+    std::sort(std::begin(this->layers), std::end(this->layers),
+        [](TileLayer& a, TileLayer& b) -> bool { return a.number > b.number; });
 }
 
 int Map::TileIndexFromRC(int col, int row)
@@ -141,7 +152,7 @@ void Map::DrawTile(Tile& t, SDL_Rect & dest)
     src.x = (t.tile % 8) * src.w;
     src.y = (t.tile / 8) * src.h;
 
-    TextureManager::Draw(this->tileset, src, dest);
+    TextureManager::Draw(this->tileset, src, dest, t.rot*90, t.flipX ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
 }
 
 void Map::DrawMap() {
@@ -155,7 +166,9 @@ void Map::DrawMap() {
             dest.x = c * dest.w;
 
             for (auto& l : this->layers) {
-                auto& t = l[this->TileIndexFromRC(c, r)];
+                if (l.hide) continue;
+
+                auto& t = l.tiles[this->TileIndexFromRC(c, r)];
                 this->DrawTile(t, dest);
             }
         }
