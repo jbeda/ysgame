@@ -108,7 +108,7 @@
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Map.cpp" />
+    <ClCompile Include="src\PyxelMap.cpp" />
     <ClCompile Include="src\TextureManager.cpp" />
     <ClCompile Include="src\Vector2D.cpp" />
   </ItemGroup>
@@ -116,6 +116,7 @@
     <ClInclude Include="src\GameObject.hpp" />
     <ClInclude Include="src\Game.hpp" />
     <ClInclude Include="src\Map.hpp" />
+    <ClInclude Include="src\PyxelMap.hpp" />
     <ClInclude Include="src\TextureManager.hpp" />
     <ClInclude Include="src\Vector2D.hpp" />
     <ClInclude Include="third_party\nlohmann\json.hpp" />

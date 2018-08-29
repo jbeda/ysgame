@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <SDL_image.h>
 #include "GameObject.hpp"
-#include "Map.hpp"
+#include "PyxelMap.hpp"
 
 int bgcolor[] = {255, 255, 255, 255};
 SDL_Window* wndw;
@@ -33,7 +33,7 @@ Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
         this->rtrnVal = CODE_RED;
         return;
     }
-    map = new Map(std::string("outsidetiles"));
+    map = new PyxelMap(std::string("outsidetiles"));
     this->plr = new GameObject("Player.png", 0, 0);
     enemy1 = new GameObject("Enemy.png", 50, 50);
     this->rtrnVal = CODE_GREEN;

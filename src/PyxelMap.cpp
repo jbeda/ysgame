@@ -1,4 +1,4 @@
-#include "Map.hpp"
+#include "PyxelMap.hpp"
 #include "TextureManager.hpp"
 #include <stdio.h>
 #include <iostream>
@@ -81,16 +81,16 @@ void from_json(const nlohmann::json& j, JsonMapData& m) {
     m.layers = j["layers"].get<std::vector<JsonLayer>>();
 }
 
-Map::Map(std::string& mapName) {
+PyxelMap::PyxelMap(std::string& mapName) {
     this->tileset = TextureManager::LoadTexture(( mapName + ".png").c_str());
     this->LoadMap("assets\\" + mapName + ".json");
 }
 
-Map::~Map() {
+PyxelMap::~PyxelMap() {
     SDL_DestroyTexture(this->tileset);
 
 }
-void Map::LoadMap(std::string& mapName) {
+void PyxelMap::LoadMap(std::string& mapName) {
     std::ifstream i(mapName);
 
     // Parse the json object into generic representation
@@ -134,12 +134,12 @@ void Map::LoadMap(std::string& mapName) {
         [](TileLayer& a, TileLayer& b) -> bool { return a.number > b.number; });
 }
 
-int Map::TileIndexFromRC(int col, int row)
+int PyxelMap::TileIndexFromRC(int col, int row)
 {
     return row * this->cols + col;
 }
 
-void Map::DrawTile(Tile& t, SDL_Rect & dest)
+void PyxelMap::DrawTile(Tile& t, SDL_Rect & dest)
 {
     if (t.tile < 0) {
         return;
@@ -155,7 +155,7 @@ void Map::DrawTile(Tile& t, SDL_Rect & dest)
     TextureManager::Draw(this->tileset, src, dest, t.rot*90, t.flipX ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
 }
 
-void Map::DrawMap() {
+void PyxelMap::DrawMap() {
     SDL_Rect dest;
     dest.w = this->tilewidth;
     dest.h = this->tileheight;
