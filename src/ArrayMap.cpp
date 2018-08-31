@@ -4,7 +4,7 @@
 #include <vector>
 #include <fstream>
 
-#include "nlohmann/json.hpp"
+#include <nlohmann/json.hpp>
 
 #define DIRT 0
 #define GRASS 1

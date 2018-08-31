@@ -32,7 +32,7 @@ public:
     void DrawMap();
 
 private:
-    void LoadMap(std::string& mapName);
+    void LoadMap(std::string mapName);
     int TileIndexFromRC(int col, int row);
     void DrawTile(Tile& t, SDL_Rect& dest);
 

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "nlohmann/json.hpp"
+#include <nlohmann/json.hpp>
 
 struct JsonTile
 {
@@ -83,14 +83,14 @@ void from_json(const nlohmann::json& j, JsonMapData& m) {
 
 PyxelMap::PyxelMap(std::string& mapName) {
     this->tileset = TextureManager::LoadTexture(( mapName + ".png").c_str());
-    this->LoadMap("assets\\" + mapName + ".json");
+    this->LoadMap(((std::string&)"assets\\" + mapName + (std::string&)".json"));
 }
 
 PyxelMap::~PyxelMap() {
     SDL_DestroyTexture(this->tileset);
 
 }
-void PyxelMap::LoadMap(std::string& mapName) {
+void PyxelMap::LoadMap(std::string mapName) {
     std::ifstream i(mapName);
 
     // Parse the json object into generic representation
