@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <stdio.h>
 #include "Game.hpp"
+#include "Controller.hpp"
 
 #define FPS 60 // for now
 #define FRAME_DELAY 1000 / FPS
@@ -17,6 +18,7 @@ int main(int argc, char const *argv[]) {
 
     while (1) {
         Uint32 frameStart = SDL_GetTicks();
+		Controller::SetControllerEnabled(Game::getPlrController()->IsConnected());
         game->update();
         game->render();
         int code = game->handleEvents();

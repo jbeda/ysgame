@@ -4,6 +4,7 @@
 #include <SDL.h>
 
 class GameObject;
+class Controller;
 
 // WINDOW SIZE
 #define WINDOW_WIDTH 640
@@ -28,6 +29,7 @@ public:
     void render();
     ReturnCode constrReturnValue() { return this->rtrnVal; }
     static SDL_Renderer* renderer;
+	static Controller* getPlrController();
 private:
     ReturnCode rtrnVal;
     GameObject* plr;

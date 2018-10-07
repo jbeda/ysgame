@@ -5,21 +5,26 @@
 #include "GameObject.hpp"
 #include "PyxelMap.hpp"
 #include "ArrayMap.hpp"
+#include "Controller.hpp"
+#include "XBOXController.hpp"
 
 int bgcolor[] = {255, 255, 255, 255};
 SDL_Window* wndw;
 GameObject* enemy1;
 Map* map;
+Controller* playersController;
 
 Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
-    SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
-    SDL_Init(SDL_INIT_EVERYTHING);
-    int imgFlags = IMG_INIT_PNG;
+	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
+	if (SDL_Init(SDL_INIT_EVERYTHING & ~(SDL_INIT_HAPTIC|SDL_INIT_JOYSTICK|SDL_INIT_GAMECONTROLLER)) != 0)
+		throw "oops";
+	int imgFlags = IMG_INIT_PNG;
     if (!(IMG_Init(imgFlags) & imgFlags))
     {
         printf("SDL_image could not initialize! IMG_Init Error: %s\n", IMG_GetError());
         this->rtrnVal = CODE_RED;
     }
+	playersController = new XBOXController(1);
     unsigned int flags = 0;
     if (fullscreen)
         flags = SDL_WINDOW_FULLSCREEN;
@@ -41,7 +46,20 @@ Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
     enemy1 = new GameObject("Enemy.png", 50, 50);
     this->rtrnVal = CODE_GREEN;
 }
+
 void Game::update() {
+	if (Controller::IsControllerEnabled()) {
+		switch (getControllerButtonState()) {
+		case AButton:
+			MessageBox(NULL, "test 1", NULL, MB_OK);
+			break;
+		case BButton:
+			MessageBox(NULL, "test 2", NULL, MB_OK);
+			break;
+		case (ControllerButton)NULL:
+			break;
+		}
+	}
     this->plr->Update();
     enemy1->Update();
 }
@@ -52,11 +70,11 @@ void Game::render() {
     map->DrawMap();
     this->plr->Render();
     enemy1->Render();
-
     SDL_RenderPresent(renderer);
 }
 
 void Game::clean() {
+	delete playersController;
     delete map;
     delete this->plr;
     delete enemy1;
@@ -72,5 +90,8 @@ int Game::handleEvents() {
             return EVENT_QUIT;
     }
     return EVENT_NOTHING;
+}
+Controller* Game::getPlrController() {
+	return playersController;
 }
 SDL_Renderer* Game::renderer = NULL;

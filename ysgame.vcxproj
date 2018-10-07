@@ -104,7 +104,18 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Controller.cpp" />
     <ClCompile Include="src\ArrayMap.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\Game.cpp" />
@@ -112,8 +123,10 @@
     <ClCompile Include="src\PyxelMap.cpp" />
     <ClCompile Include="src\TextureManager.cpp" />
     <ClCompile Include="src\Vector2D.cpp" />
+    <ClCompile Include="src\XBOXController.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Controller.hpp" />
     <ClInclude Include="src\ArrayMap.hpp" />
     <ClInclude Include="src\GameObject.hpp" />
     <ClInclude Include="src\Game.hpp" />
@@ -158,6 +171,7 @@
     <ClInclude Include="third_party\rapidjson\stream.h" />
     <ClInclude Include="third_party\rapidjson\stringbuffer.h" />
     <ClInclude Include="third_party\rapidjson\writer.h" />
+    <ClInclude Include="src\XBOXController.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\Enemy.png" />
