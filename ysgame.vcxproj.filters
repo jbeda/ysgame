@@ -201,5 +201,7 @@
     <None Include="packages.config" />
     <None Include="assets\lvl1.json" />
     <None Include="..\..\Downloads\map.json" />
+    <None Include="maps\README.md" />
+    <None Include="maps\map.json" />
   </ItemGroup>
 </Project>

@@ -1,3 +1,3 @@
 # maps
 
-Not relevant yet
+For array based map
