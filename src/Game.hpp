@@ -22,17 +22,17 @@ typedef int ReturnCode;
 
 class Game {
 public:
-    Game(const char*, int, int, int, int, bool);
-    int handleEvents();
-    void clean();
-    void update();
-    void render();
-    ReturnCode constrReturnValue() { return this->rtrnVal; }
-    static SDL_Renderer* renderer;
+	Game(const char*, int, int, int, int, bool);
+	int handleEvents();
+	void clean();
+	void update();
+	void render();
+	ReturnCode constrReturnValue() { return this->rtrnVal; }
+	static SDL_Renderer* renderer;
 	static Controller* getPlrController();
 	static Player* getPlr() { return plr; }
 private:
-    ReturnCode rtrnVal;
+	ReturnCode rtrnVal;
 	static Player *plr;
 };
 #endif
