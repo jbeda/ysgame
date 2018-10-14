@@ -30,8 +30,9 @@ public:
     ReturnCode constrReturnValue() { return this->rtrnVal; }
     static SDL_Renderer* renderer;
 	static Controller* getPlrController();
+	static Player* getPlr() { return plr; }
 private:
     ReturnCode rtrnVal;
-	Player *plr;
+	static Player *plr;
 };
 #endif

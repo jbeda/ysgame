@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <SDL_image.h>
 #include "GameObject.hpp"
+#include "Enemy.hpp"
 #include "Player.hpp"
 #include "PyxelMap.hpp"
 #include "ArrayMap.hpp"
@@ -11,7 +12,7 @@
 
 int bgcolor[] = {255, 255, 255, 255};
 SDL_Window* wndw;
-GameObject* enemy1;
+Enemy* enemy1;
 Map* map;
 Controller* playersController;
 
@@ -43,13 +44,13 @@ Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
     //map = new PyxelMap(std::string("outsidetiles"));
     map = new ArrayMap();
  
-    this->plr = new Player();
-    enemy1 = new GameObject("Enemy.png", 50, 50);
+    plr = new Player();
+    enemy1 = new Enemy(50, 50);
     this->rtrnVal = CODE_GREEN;
 }
 
 void Game::update() {
-    this->plr->Update();
+    plr->Update();
     enemy1->Update();
 }
 
@@ -57,7 +58,7 @@ void Game::render() {
     SDL_SetRenderDrawColor(renderer, bgcolor[0], bgcolor[1], bgcolor[2], bgcolor[3]);
     SDL_RenderClear(renderer);
     map->DrawMap();
-    this->plr->Render();
+    plr->Render();
     enemy1->Render();
     SDL_RenderPresent(renderer);
 }
@@ -65,7 +66,7 @@ void Game::render() {
 void Game::clean() {
 	delete playersController;
     delete map;
-    delete this->plr;
+    delete plr;
     delete enemy1;
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(wndw);
@@ -84,3 +85,4 @@ Controller* Game::getPlrController() {
 	return playersController;
 }
 SDL_Renderer* Game::renderer = NULL;
+Player* Game::plr = NULL;
