@@ -51,7 +51,9 @@ Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
 
 void Game::update() {
     plr->Update();
-    enemy1->Update();
+	plr->sw->Update();
+	if (!enemy1->dead)
+		enemy1->Update();
 }
 
 void Game::render() {
@@ -59,7 +61,9 @@ void Game::render() {
     SDL_RenderClear(renderer);
     map->DrawMap();
     plr->Render();
-    enemy1->Render();
+	plr->sw->Render();
+	if (!enemy1->dead)
+		enemy1->Render();
     SDL_RenderPresent(renderer);
 }
 

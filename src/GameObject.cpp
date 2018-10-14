@@ -2,8 +2,14 @@
 #include "GameObject.hpp"
 #include "TextureManager.hpp"
 #include "Game.hpp"
+#include "util/numbers.h"
 
-GameObject::GameObject(const char* imgPath, int x, int y) {
+GameObject::GameObject(const char* imgPath, int x, int y, int maxhp) {
+	this->id = latestId;
+	latestId++;
+
+	this->maxhp = maxhp;
+	this->hp = this->maxhp;
 
     this->img = TextureManager::LoadTexture(imgPath);
 
@@ -24,7 +30,7 @@ void GameObject::Update() {
 }
 
 void GameObject::Render() {
-    if (SDL_RenderCopy(Game::renderer, this->img, &(this->srcRect), &(this->destRect))) {
+    if (TextureManager::Draw(this->img, this->srcRect, this->destRect, this->rotation)) {
         printf("Error calling SDL_RenderCopy: %s\n", SDL_GetError());
     }
 }
@@ -32,3 +38,15 @@ void GameObject::Render() {
 GameObject::~GameObject() {
     SDL_DestroyTexture(this->img);
 }
+#define COLLISION_RANGE 25
+bool GameObject::Collided(Plane p, GameObject& obj) {
+	switch (p) {
+	case Plane::X:
+		return IsInRange(this->destRect.x, obj.getLocation()->x, COLLISION_RANGE);
+		break;
+	case Plane::Y:
+		return IsInRange(this->destRect.y, obj.getLocation()->y, COLLISION_RANGE);
+		break;
+	}
+}
+int GameObject::latestId = 0;

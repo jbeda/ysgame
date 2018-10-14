@@ -1,9 +1,14 @@
 #pragma once
 #include "GameObject.hpp"
+#include "sword/Sword.hpp"
 class Player :
 	public GameObject
 {
 public:
-	Player() : GameObject("Player.png", 0, 0) { }
+	Player() : GameObject("Player.png", 0, 0) { this->sw = new Sword(); }
 	void Update();
+	Sword* sw;
+	~Player() {
+		delete sw;
+	}
 };
