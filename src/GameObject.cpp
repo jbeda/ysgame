@@ -22,19 +22,19 @@ GameObject::GameObject(const char* imgPath, int x, int y, int maxhp) {
 		this->srcRect.h = 32;
 	}
 
-    this->srcRect.x = 0;
-    this->srcRect.y = 0;
+	this->srcRect.x = 0;
+	this->srcRect.y = 0;
 
-    this->destRect.x = x;
-    this->destRect.y = y;
-    this->destRect.w = this->srcRect.w * 2;
-    this->destRect.h = this->srcRect.w * 2;
+	this->destRect.x = x;
+	this->destRect.y = y;
+	this->destRect.w = this->srcRect.w * 2;
+	this->destRect.h = this->srcRect.w * 2;
 }
 
 void GameObject::Render() {
-    if (TextureManager::Draw(this->img, this->srcRect, this->destRect, this->rotation)) {
-        printf("Error calling SDL_RenderCopy: %s\n", SDL_GetError());
-    }
+	if (TextureManager::Draw(this->img, this->srcRect, this->destRect, this->rotation)) {
+		printf("Error calling SDL_RenderCopy: %s\n", SDL_GetError());
+	}
 }
 
 GameObject::~GameObject() {
