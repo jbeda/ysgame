@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <SDL_image.h>
 #include "GameObject.hpp"
+#include "Player.hpp"
 #include "PyxelMap.hpp"
 #include "ArrayMap.hpp"
 #include "Controller.hpp"
@@ -42,24 +43,12 @@ Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
     //map = new PyxelMap(std::string("outsidetiles"));
     map = new ArrayMap();
  
-    this->plr = new GameObject("Player.png", 0, 0);
+    this->plr = new Player();
     enemy1 = new GameObject("Enemy.png", 50, 50);
     this->rtrnVal = CODE_GREEN;
 }
 
 void Game::update() {
-	if (Controller::IsControllerEnabled()) {
-		switch (getControllerButtonState()) {
-		case AButton:
-			MessageBox(NULL, "test 1", NULL, MB_OK);
-			break;
-		case BButton:
-			MessageBox(NULL, "test 2", NULL, MB_OK);
-			break;
-		case (ControllerButton)NULL:
-			break;
-		}
-	}
     this->plr->Update();
     enemy1->Update();
 }

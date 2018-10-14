@@ -3,7 +3,7 @@
 
 #include <SDL.h>
 
-class GameObject;
+class Player;
 class Controller;
 
 // WINDOW SIZE
@@ -32,6 +32,6 @@ public:
 	static Controller* getPlrController();
 private:
     ReturnCode rtrnVal;
-    GameObject* plr;
+	Player *plr;
 };
 #endif

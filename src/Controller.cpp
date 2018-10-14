@@ -35,3 +35,49 @@ ControllerButton getControllerButtonState() {
 	}
 	return (ControllerButton)NULL;
 }
+#define SENSITIVITY 10000
+void getJoystickXY(JS& joystickObj, bool isLeft) {
+	if (isLeft) {
+		short x = plrC->GetState().Gamepad.sThumbLX;
+		if (x < -SENSITIVITY) {
+			joystickObj.x = HorizontalValue::Left;
+		}
+		else if (x > SENSITIVITY) {
+			joystickObj.x = HorizontalValue::Right;
+		}
+		else {
+			joystickObj.x = HorizontalValue::None;
+		}
+		short y = plrC->GetState().Gamepad.sThumbLY;
+		if (y < -SENSITIVITY) {
+			joystickObj.y = VerticalValue::Down;
+		}
+		else if (y > SENSITIVITY) {
+			joystickObj.y = VerticalValue::Up;
+		}
+		else {
+			joystickObj.y = VerticalValue::None;
+		}
+	} else {
+		short x = plrC->GetState().Gamepad.sThumbRX;
+		if (x < -SENSITIVITY) {
+			joystickObj.x = HorizontalValue::Left;
+		}
+		else if (x > SENSITIVITY) {
+			joystickObj.x = HorizontalValue::Right;
+		}
+		else {
+			joystickObj.x = HorizontalValue::None;
+		}
+		short y = plrC->GetState().Gamepad.sThumbRY;
+		if (y < -SENSITIVITY) {
+			joystickObj.y = VerticalValue::Down;
+		}
+		else if (y > SENSITIVITY) {
+			joystickObj.y = VerticalValue::Up;
+		}
+		else {
+			joystickObj.y = VerticalValue::None;
+		}
+	}
+}

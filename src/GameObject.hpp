@@ -12,10 +12,10 @@ public:
 
     SDL_Texture* getImage() { return this->img; }
 
-    void Update();
-    void Render();
+    virtual void Update();
+    virtual void Render();
 
-private:
+protected:
     SDL_Rect srcRect;
     SDL_Rect destRect;
     SDL_Texture* img;

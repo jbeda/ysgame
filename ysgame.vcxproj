@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Controller.cpp" />
     <ClCompile Include="src\ArrayMap.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
@@ -126,6 +127,7 @@
     <ClCompile Include="src\XBOXController.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Player.hpp" />
     <ClInclude Include="src\Controller.hpp" />
     <ClInclude Include="src\ArrayMap.hpp" />
     <ClInclude Include="src\GameObject.hpp" />

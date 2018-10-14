@@ -22,6 +22,26 @@ enum class ControllerButton {
 #define DPadRight ControllerButton::DPadRight
 #define DPadLeft ControllerButton::DPadLeft
 
+enum class HorizontalValue {
+	Left,
+	Right,
+	None
+};
+
+enum class VerticalValue {
+	Up,
+	Down,
+	None
+};
+struct JS {
+	HorizontalValue x;
+	VerticalValue y;
+};
+typedef JS LJS;
+typedef JS RJS;
+
+void getJoystickXY(JS&, bool);
+
 ControllerButton getControllerButtonState();
 
 class Controller {
