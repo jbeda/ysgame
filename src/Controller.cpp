@@ -9,6 +9,10 @@ void Controller::SetControllerEnabled(bool enabled) {
 }
 #define plrC Game::getPlrController()
 ControllerButton getControllerButtonState() {
+	if (!Controller::IsControllerEnabled()) {
+		return (ControllerButton)NULL;
+	}
+
 	if (plrC->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_A) {
 		return AButton;
 	}
@@ -37,6 +41,11 @@ ControllerButton getControllerButtonState() {
 }
 #define SENSITIVITY 10000
 void getJoystickXY(JS& joystickObj, bool isLeft) {
+	if (!Controller::IsControllerEnabled()) {
+		joystickObj.x = HorizontalValue::None;
+		joystickObj.y = VerticalValue::None;
+	}
+
 	if (isLeft) {
 		short x = plrC->GetState().Gamepad.sThumbLX;
 		if (x < -SENSITIVITY) {
