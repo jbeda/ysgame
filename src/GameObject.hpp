@@ -15,7 +15,7 @@ public:
 
     SDL_Texture* getImage() { return this->img; }
 
-    virtual void Update();
+    virtual void Update() { }
     virtual void Render();
 	virtual void Rotate(double rotation) { this->rotation += rotation; }
 	int getHP() { return this->hp; }

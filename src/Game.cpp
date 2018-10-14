@@ -10,11 +10,15 @@
 #include "Controller.hpp"
 #include "XBOXController.hpp"
 
-int bgcolor[] = {255, 255, 255, 255};
+YColor barrier = {0, 0, 0, 0};
 SDL_Window* wndw;
 Enemy* enemy1;
 Map* map;
 Controller* playersController;
+
+void SetRendererColor(SDL_Renderer* ren, YColor color) {
+	SDL_SetRenderDrawColor(ren, color[0], color[1], color[2], color[3]);
+}
 
 Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
 	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
@@ -57,7 +61,7 @@ void Game::update() {
 }
 
 void Game::render() {
-    SDL_SetRenderDrawColor(renderer, bgcolor[0], bgcolor[1], bgcolor[2], bgcolor[3]);
+	SetRendererColor(renderer, barrier);
     SDL_RenderClear(renderer);
     map->DrawMap();
     plr->Render();

@@ -3,6 +3,32 @@
 #include <SDL.h>
 #include "Map.hpp"
 #include <vector>
+#include "util/debugging/notif.h"
+#include "util/include.h"
+#include "GameObject.hpp"
+#include "Game.hpp"
+#include "Player.hpp"
+
+class TileHitBox : public GameObject {
+public:
+	TileHitBox(int r, int c, bool solid) : GameObject(NULL, c * 32, r * 32) { this->solid = solid; }
+	void Update() {
+		if (this->solid) {
+			if (this->Collided(Plane::X, *Game::getPlr()) && this->Collided(Plane::Y, *Game::getPlr())) {
+				//Game::getPlr()->getLocation()->x++;
+				char row[128], col[128];
+				itoa((this->destRect.y / 32), row, 10);
+				itoa((this->destRect.x / 32), col, 10);
+				DebugMessage(("player collided; row: " + std::string(row) + ", col: " + std::string(col)).c_str());
+			}
+		}
+	}
+	void Render() {
+		SDL_RenderDrawRect(Game::renderer, &this->destRect);
+	}
+private:
+	bool solid;
+};
 class ArrayMap : public Map {
 public:
     ArrayMap();
@@ -20,6 +46,8 @@ private:
     SDL_Texture* stone;
     SDL_Texture* stonebg;
     std::vector<std::vector<int>> tiles;
+	std::vector<std::vector<int>> hbValues;
+	std::vector<std::vector<TileHitBox>> hitboxes;
 };
 
 #endif

@@ -1,5 +1,5 @@
 #include "notif.h"
-#include <Windows.h>
+#include <stdio.h>
 void DebugMessage(const char* text) {
-	MessageBox(NULL, text, "Debug", MB_OK | MB_ICONINFORMATION);
+	printf("[DEBUG] %s\n", text);
 }

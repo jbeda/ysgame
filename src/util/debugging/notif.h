@@ -2,4 +2,4 @@
 #ifdef __cplusplus
 extern "C"
 #endif
-void DebugMessage(const char*);
+void DebugMessage(const char* text);

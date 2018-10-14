@@ -11,9 +11,16 @@ GameObject::GameObject(const char* imgPath, int x, int y, int maxhp) {
 	this->maxhp = maxhp;
 	this->hp = this->maxhp;
 
-    this->img = TextureManager::LoadTexture(imgPath);
+	this->img = NULL;
+	if (imgPath != NULL) {
+		this->img = TextureManager::LoadTexture(imgPath);
 
-    SDL_QueryTexture(this->img, NULL, NULL, &(this->srcRect.w), &(this->srcRect.h));
+		SDL_QueryTexture(this->img, NULL, NULL, &(this->srcRect.w), &(this->srcRect.h));
+	}
+	else {
+		this->srcRect.w = 32;
+		this->srcRect.h = 32;
+	}
 
     this->srcRect.x = 0;
     this->srcRect.y = 0;
@@ -24,11 +31,6 @@ GameObject::GameObject(const char* imgPath, int x, int y, int maxhp) {
     this->destRect.h = this->srcRect.w * 2;
 }
 
-void GameObject::Update() {
-    this->destRect.x++;
-    this->destRect.y++;
-}
-
 void GameObject::Render() {
     if (TextureManager::Draw(this->img, this->srcRect, this->destRect, this->rotation)) {
         printf("Error calling SDL_RenderCopy: %s\n", SDL_GetError());
@@ -36,9 +38,11 @@ void GameObject::Render() {
 }
 
 GameObject::~GameObject() {
-    SDL_DestroyTexture(this->img);
+	if (this->img) {
+		SDL_DestroyTexture(this->img);
+	}
 }
-#define COLLISION_RANGE 25
+#define COLLISION_RANGE 15
 bool GameObject::Collided(Plane p, GameObject& obj) {
 	switch (p) {
 	case Plane::X:

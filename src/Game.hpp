@@ -2,7 +2,7 @@
 #define GAME_HPP
 
 #include <SDL.h>
-
+typedef int YColor[4];
 class Player;
 class Controller;
 
