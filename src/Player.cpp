@@ -1,6 +1,7 @@
 #include "Player.hpp"
 #include "Controller.hpp"
 #include "Keyboard.hpp"
+#include "util/debugging/notif.h"
 
 const int moveIncrement = 2;
 
@@ -9,7 +10,7 @@ void Player::Update() {
 	getJoystickXY(js, true);
 
 	KeyboardInput ki;
-	GetKeyboardInput(&ki);
+	GetKeyboardInput(ki);
 
 	if (js.x == HorizontalValue::Left || ki.x == KBDirectionX::LEFT) {
 		this->destRect.x -= moveIncrement;
@@ -24,4 +25,7 @@ void Player::Update() {
 	} else if (js.y == VerticalValue::Down || ki.y == KBDirectionY::DOWN) {
 		this->destRect.y += moveIncrement;
 	}
+}
+void Player::AddEffect(PlayerEffect effect) {
+	DebugMessage(("Aquired effect: " + EffectToStr(effect)).c_str());
 }

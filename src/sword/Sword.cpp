@@ -36,7 +36,7 @@ void Sword::Update() {
 	}
 
 	KeyboardInput ki;
-	GetKeyboardInput(&ki);
+	GetKeyboardInput(ki);
 	if (ki.attack) {
 		this->Swing();
 	}

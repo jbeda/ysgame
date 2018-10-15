@@ -9,12 +9,14 @@
 #include "ArrayMap.hpp"
 #include "Controller.hpp"
 #include "XBOXController.hpp"
+#include "items/Item.hpp"
 
 YColor barrier = { 0, 0, 0, 0 };
 SDL_Window* wndw;
 Enemy* enemy1;
 Map* map;
 Controller* playersController;
+Item* test;
 
 void SetRendererColor(SDL_Renderer* ren, YColor color) {
 	SDL_SetRenderDrawColor(ren, color[0], color[1], color[2], color[3]);
@@ -47,8 +49,8 @@ Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
 	}
 	//map = new PyxelMap(std::string("outsidetiles"));
 	map = new ArrayMap();
-
 	plr = new Player();
+	test = new Grenade(10, 10);
 	enemy1 = new Enemy(50, 50);
 	this->rtrnVal = CODE_GREEN;
 }
@@ -58,6 +60,8 @@ void Game::update() {
 	plr->sw->Update();
 	if (!enemy1->dead)
 		enemy1->Update();
+	if (!test->dead)
+		test->Update();
 }
 
 void Game::render() {
@@ -68,6 +72,8 @@ void Game::render() {
 	plr->sw->Render();
 	if (!enemy1->dead)
 		enemy1->Render();
+	if (!test->dead)
+		test->Render();
 	SDL_RenderPresent(renderer);
 }
 
@@ -76,6 +82,7 @@ void Game::clean() {
 	delete map;
 	delete plr;
 	delete enemy1;
+	delete test;
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(wndw);
 	IMG_Quit();

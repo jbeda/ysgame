@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.hpp"
 #include "sword/Sword.hpp"
+#include "items/Item.hpp"
 class Player :
 	public GameObject
 {
@@ -11,4 +12,5 @@ public:
 	~Player() {
 		delete sw;
 	}
+	void AddEffect(PlayerEffect);
 };

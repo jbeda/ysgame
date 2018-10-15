@@ -15,7 +15,7 @@ enum class KBDirectionY {
 struct KeyboardInput {
 	KBDirectionX x;
 	KBDirectionY y;
-	bool attack;
+	bool attack, pickup;
 };
 
-void GetKeyboardInput(KeyboardInput* ki);
+void GetKeyboardInput(KeyboardInput& ki);

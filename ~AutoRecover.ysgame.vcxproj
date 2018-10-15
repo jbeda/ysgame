@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{25A00A51-0255-45D1-9154-87A0A4F8AF41}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);third_party</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);third_party</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Enemy.cpp" />
+    <ClCompile Include="src\items\Item.cpp" />
+    <ClCompile Include="src\Keyboard.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Controller.cpp" />
+    <ClCompile Include="src\ArrayMap.cpp" />
+    <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\PyxelMap.cpp" />
+    <ClCompile Include="src\TextureManager.cpp" />
+    <ClCompile Include="src\util\debugging\notif.c" />
+    <ClCompile Include="src\util\numbers.c" />
+    <ClCompile Include="src\Vector2D.cpp" />
+    <ClCompile Include="src\XBOXController.cpp" />
+    <ClCompile Include="src\sword\Sword.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Enemy.hpp" />
+    <ClInclude Include="src\items\Item.hpp" />
+    <ClInclude Include="src\Keyboard.hpp" />
+    <ClInclude Include="src\Player.hpp" />
+    <ClInclude Include="src\Controller.hpp" />
+    <ClInclude Include="src\ArrayMap.hpp" />
+    <ClInclude Include="src\GameObject.hpp" />
+    <ClInclude Include="src\Game.hpp" />
+    <ClInclude Include="src\Map.hpp" />
+    <ClInclude Include="src\PyxelMap.hpp" />
+    <ClInclude Include="src\TextureManager.hpp" />
+    <ClInclude Include="src\util\debugging\notif.h" />
+    <ClInclude Include="src\util\include.h" />
+    <ClInclude Include="src\util\numbers.h" />
+    <ClInclude Include="src\Vector2D.hpp" />
+    <ClInclude Include="src\sword\Sword.hpp" />
+    <ClInclude Include="third_party\nlohmann\json.hpp" />
+    <ClInclude Include="third_party\rapidjson\allocators.h" />
+    <ClInclude Include="third_party\rapidjson\cursorstreamwrapper.h" />
+    <ClInclude Include="third_party\rapidjson\document.h" />
+    <ClInclude Include="third_party\rapidjson\encodedstream.h" />
+    <ClInclude Include="third_party\rapidjson\encodings.h" />
+    <ClInclude Include="third_party\rapidjson\error\en.h" />
+    <ClInclude Include="third_party\rapidjson\error\error.h" />
+    <ClInclude Include="third_party\rapidjson\filereadstream.h" />
+    <ClInclude Include="third_party\rapidjson\filewritestream.h" />
+    <ClInclude Include="third_party\rapidjson\fwd.h" />
+    <ClInclude Include="third_party\rapidjson\internal\biginteger.h" />
+    <ClInclude Include="third_party\rapidjson\internal\diyfp.h" />
+    <ClInclude Include="third_party\rapidjson\internal\dtoa.h" />
+    <ClInclude Include="third_party\rapidjson\internal\ieee754.h" />
+    <ClInclude Include="third_party\rapidjson\internal\itoa.h" />
+    <ClInclude Include="third_party\rapidjson\internal\meta.h" />
+    <ClInclude Include="third_party\rapidjson\internal\pow10.h" />
+    <ClInclude Include="third_party\rapidjson\internal\regex.h" />
+    <ClInclude Include="third_party\rapidjson\internal\stack.h" />
+    <ClInclude Include="third_party\rapidjson\internal\strfunc.h" />
+    <ClInclude Include="third_party\rapidjson\internal\strtod.h" />
+    <ClInclude Include="third_party\rapidjson\internal\swap.h" />
+    <ClInclude Include="third_party\rapidjson\istreamwrapper.h" />
+    <ClInclude Include="third_party\rapidjson\memorybuffer.h" />
+    <ClInclude Include="third_party\rapidjson\memorystream.h" />
+    <ClInclude Include="third_party\rapidjson\msinttypes\inttypes.h" />
+    <ClInclude Include="third_party\rapidjson\msinttypes\stdint.h" />
+    <ClInclude Include="third_party\rapidjson\ostreamwrapper.h" />
+    <ClInclude Include="third_party\rapidjson\pointer.h" />
+    <ClInclude Include="third_party\rapidjson\prettywriter.h" />
+    <ClInclude Include="third_party\rapidjson\rapidjson.h" />
+    <ClInclude Include="third_party\rapidjson\reader.h" />
+    <ClInclude Include="third_party\rapidjson\schema.h" />
+    <ClInclude Include="third_party\rapidjson\stream.h" />
+    <ClInclude Include="third_party\rapidjson\stringbuffer.h" />
+    <ClInclude Include="third_party\rapidjson\writer.h" />
+    <ClInclude Include="src\XBOXController.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\Enemy.png" />
+    <Image Include="assets\lvl1.png" />
+    <Image Include="assets\Player.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Downloads\map.json" />
+    <None Include="assets\lvl1.json" />
+    <None Include="maps\map.json" />
+    <None Include="maps\README.md" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="AUTHORS" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\sdl2.new.redist.2.0.8\build\native\sdl2.new.redist.targets" Condition="Exists('packages\sdl2.new.redist.2.0.8\build\native\sdl2.new.redist.targets')" />
+    <Import Project="packages\sdl2.new.2.0.8\build\native\sdl2.new.targets" Condition="Exists('packages\sdl2.new.2.0.8\build\native\sdl2.new.targets')" />
+    <Import Project="packages\vii.SDL2_image.redist.2.0.3\build\native\vii.SDL2_image.redist.targets" Condition="Exists('packages\vii.SDL2_image.redist.2.0.3\build\native\vii.SDL2_image.redist.targets')" />
+    <Import Project="packages\vii.SDL2_image.2.0.3\build\native\vii.SDL2_image.targets" Condition="Exists('packages\vii.SDL2_image.2.0.3\build\native\vii.SDL2_image.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\sdl2.new.redist.2.0.8\build\native\sdl2.new.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2.new.redist.2.0.8\build\native\sdl2.new.redist.targets'))" />
+    <Error Condition="!Exists('packages\sdl2.new.2.0.8\build\native\sdl2.new.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2.new.2.0.8\build\native\sdl2.new.targets'))" />
+    <Error Condition="!Exists('packages\vii.SDL2_image.redist.2.0.3\build\native\vii.SDL2_image.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\vii.SDL2_image.redist.2.0.3\build\native\vii.SDL2_image.redist.targets'))" />
+    <Error Condition="!Exists('packages\vii.SDL2_image.2.0.3\build\native\vii.SDL2_image.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\vii.SDL2_image.2.0.3\build\native\vii.SDL2_image.targets'))" />
+  </Target>
+</Project>
