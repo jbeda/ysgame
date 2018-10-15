@@ -13,8 +13,10 @@ void Player::Update() {
 
 	if (js.x == HorizontalValue::Left || ki.x == KBDirectionX::LEFT) {
 		this->destRect.x -= moveIncrement;
+		this->currentFlip = SDL_FLIP_HORIZONTAL;
 	} else if (js.x == HorizontalValue::Right || ki.x == KBDirectionX::RIGHT) {
 		this->destRect.x += moveIncrement;
+		this->currentFlip = SDL_FLIP_NONE;
 	}
 
 	if (js.y == VerticalValue::Up || ki.y == KBDirectionY::UP) {

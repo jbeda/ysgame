@@ -15,6 +15,8 @@ public:
 
 	SDL_Texture* getImage() { return this->img; }
 
+	SDL_RendererFlip getRenderFlip() { return this->currentFlip; }
+
 	virtual void Update() { }
 	virtual void Render();
 	virtual void Rotate(double rotation) { this->rotation += rotation; }
@@ -30,5 +32,6 @@ protected:
 	int maxhp;
 	int id;
 	static int latestId;
+	SDL_RendererFlip currentFlip = SDL_FLIP_NONE;
 };
 #endif

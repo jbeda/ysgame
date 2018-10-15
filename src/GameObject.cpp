@@ -32,7 +32,7 @@ GameObject::GameObject(const char* imgPath, int x, int y, int maxhp) {
 }
 
 void GameObject::Render() {
-	if (TextureManager::Draw(this->img, this->srcRect, this->destRect, this->rotation)) {
+	if (TextureManager::Draw(this->img, this->srcRect, this->destRect, this->rotation, this->currentFlip)) {
 		printf("Error calling SDL_RenderCopy: %s\n", SDL_GetError());
 	}
 }

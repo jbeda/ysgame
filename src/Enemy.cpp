@@ -8,8 +8,10 @@ void Enemy::Update() {
 	SDL_Rect* plrLoc = Game::getPlr()->getLocation();
 	if (this->destRect.x < plrLoc->x) {
 		this->destRect.x++;
+		this->currentFlip = SDL_FLIP_NONE;
 	} else if (this->destRect.x > plrLoc->x) {
 		this->destRect.x--;
+		this->currentFlip = SDL_FLIP_HORIZONTAL;
 	}
 	if (this->destRect.y < plrLoc->y) {
 		this->destRect.y++;
@@ -20,7 +22,7 @@ void Enemy::Update() {
 	bool y = this->Collided(Plane::Y, *(Game::getPlr()->sw));
 	if ((x && y) && Game::getPlr()->sw->IsSwinging()) {
 		this->hp--;
-		char buf[2];
+		char buf[128];
 		itoa(this->id, buf, 10);
 		DebugMessage(("i got hurt " + std::string(buf)).c_str());
 	}

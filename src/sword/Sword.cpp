@@ -6,18 +6,27 @@
 #include "../util/debugging/notif.h"
 
 void Sword::Update() {
-	if (rotation == 135) {
+	if (rotation == 135 || rotation == -135) {
 		DebugMessage("135 deg now resetting");
 		this->ResetSwing();
 	}
 	if (this->swinging) {
-		this->Rotate(3);
+		if (Game::getPlr()->getRenderFlip() == SDL_FLIP_NONE) {
+			this->Rotate(3);
+			this->destRect.x += 1;
+		}
+		else {
+			this->Rotate(-3);
+			this->destRect.x -= 1;
+		}
 		this->destRect.y += 0.5;
-		this->destRect.x += 1;
 	}
 	else {
 		this->destRect.y = Game::getPlr()->getLocation()->y + 5;
-		this->destRect.x = Game::getPlr()->getLocation()->x + 20;
+		if (Game::getPlr()->getRenderFlip() == SDL_FLIP_NONE)
+			this->destRect.x = Game::getPlr()->getLocation()->x + 20;
+		else
+			this->destRect.x = Game::getPlr()->getLocation()->x - 7;
 	}
 
 	switch (getControllerButtonState()) {
