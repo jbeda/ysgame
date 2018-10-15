@@ -22,9 +22,12 @@ void Enemy::Update() {
 	bool y = this->Collided(Plane::Y, *(Game::getPlr()->sw));
 	if ((x && y) && Game::getPlr()->sw->IsSwinging()) {
 		this->hp--;
+		// debug
 		char buf[128];
 		itoa(this->id, buf, 10);
 		DebugMessage(("i got hurt " + std::string(buf)).c_str());
+		// reset the throwing knife
+		Game::getPlr()->sw->ResetSwing();
 	}
 	if (this->hp <= 0)
 		this->dead = true;
