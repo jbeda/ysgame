@@ -1,20 +1,21 @@
 #pragma once
 #include "../GameObject.hpp"
 #include "../util/include.h"
-enum class PlayerEffect {
-	Wiper,
-	Grenade,
-	HoningKnife,
-	RapidThrow
-};
+#include "weapons/Weapon.hpp"
 // For debugging
 std::string EffectToStr(PlayerEffect effect);
 class Item : public GameObject {
 public:
-	Item(const char* itemImage, int x, int y, PlayerEffect effect) : GameObject(itemImage, x, y) { this->effect = effect; }
+	Item(const char* itemImage, int x, int y, PlayerEffect effect) : GameObject(itemImage, x, y) { 
+		this->effect = new Weapon(effect); 
+	}
+
+	~Item() {
+		delete this->effect;
+	}
 	void Update();
 protected:
-	PlayerEffect effect;
+	Weapon* effect = NULL;
 	std::string name, desc;
 	int uses;
 };

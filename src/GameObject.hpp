@@ -9,7 +9,7 @@ enum class Plane {
 class GameObject {
 public:
 	GameObject(const char* texFile, int x, int y, int maxhp = 10);
-	~GameObject();
+	virtual ~GameObject();
 
 	SDL_Rect* getLocation() { return &(this->destRect); }
 

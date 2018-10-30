@@ -26,6 +26,15 @@ void Player::Update() {
 		this->destRect.y += moveIncrement;
 	}
 }
-void Player::AddEffect(PlayerEffect effect) {
-	DebugMessage(("Aquired effect: " + EffectToStr(effect)).c_str());
+void Player::AddEffect(Weapon* effect) {
+	// Delete any existing effect
+	delete this->effect;
+
+	DebugMessage(("Aquired effect: " + EffectToStr(effect->getEnumeration())).c_str());
+	this->effect = effect;
+}
+
+void Player::ClearEffect() { 
+	delete this->effect;
+	this->effect = NULL; 
 }

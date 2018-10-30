@@ -31,14 +31,22 @@ void Sword::Update() {
 
 	switch (getControllerButtonState()) {
 	case XButton:
-		this->Swing();
+		if (!Game::getPlr()->getCurrentEffect())
+			this->Swing();
+		else
+			if (Game::getPlr()->getCurrentEffect()->Use())
+				Game::getPlr()->ClearEffect();
 		break;
 	}
 
 	KeyboardInput ki;
 	GetKeyboardInput(ki);
 	if (ki.attack) {
-		this->Swing();
+		if (!Game::getPlr()->getCurrentEffect())
+			this->Swing();
+		else
+			if (Game::getPlr()->getCurrentEffect()->Use())
+				Game::getPlr()->ClearEffect();
 	}
 }
 void Sword::ResetSwing() {

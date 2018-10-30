@@ -50,7 +50,7 @@ Game::Game(const char* title, int x, int y, int w, int h, bool fullscreen) {
 	//map = new PyxelMap(std::string("outsidetiles"));
 	map = new ArrayMap();
 	plr = new Player();
-	test = new Grenade(10, 10);
+	test = new Wiper(10, 10);
 	enemy1 = new Enemy(50, 50);
 	this->rtrnVal = CODE_GREEN;
 }

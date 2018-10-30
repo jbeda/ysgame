@@ -7,10 +7,17 @@ class Player :
 {
 public:
 	Player() : GameObject("Player.png", 0, 0) { this->sw = new Sword(); }
+
 	void Update();
 	Sword* sw;
-	~Player() {
+	virtual ~Player() {
 		delete sw;
+		delete this->effect;
 	}
-	void AddEffect(PlayerEffect);
+	void AddEffect(Weapon*);
+	Weapon* getCurrentEffect() { return this->effect; }
+	void ClearEffect();
+
+private:
+	Weapon* effect = NULL;
 };
