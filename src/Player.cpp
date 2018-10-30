@@ -25,7 +25,15 @@ void Player::Update() {
 	} else if (js.y == VerticalValue::Down || ki.y == KBDirectionY::DOWN) {
 		this->destRect.y += moveIncrement;
 	}
+
+	this->sw->Update();
 }
+
+void Player::Render() {
+	GameObject::Render();
+	this->sw->Render();
+}
+
 void Player::AddEffect(Weapon* effect) {
 	// Delete any existing effect
 	delete this->effect;

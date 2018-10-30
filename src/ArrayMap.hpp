@@ -14,8 +14,8 @@ public:
 	TileHitBox(int r, int c, bool solid) : GameObject(NULL, c * 32, r * 32) { this->solid = solid; }
 	void Update() {
 		if (this->solid) {
-			if (this->Collided(Plane::X, *Game::getPlr()) && this->Collided(Plane::Y, *Game::getPlr())) {
-				//Game::getPlr()->getLocation()->x++;
+			if (this->Collided(Plane::X, *gGame->getPlr()) && this->Collided(Plane::Y, *gGame->getPlr())) {
+				//gGame->getPlr()->getLocation()->x++;
 				char row[128], col[128];
 				itoa((this->destRect.y / 32), row, 10);
 				itoa((this->destRect.x / 32), col, 10);
@@ -24,7 +24,7 @@ public:
 		}
 	}
 	void Render() {
-		SDL_RenderDrawRect(Game::renderer, &this->destRect);
+		SDL_RenderDrawRect(gGame->renderer, &this->destRect);
 	}
 private:
 	bool solid;
@@ -47,7 +47,7 @@ private:
 	SDL_Texture* stonebg;
 	std::vector<std::vector<int>> tiles;
 	std::vector<std::vector<int>> hbValues;
-	std::vector<std::vector<TileHitBox>> hitboxes;
+	std::vector<std::vector<std::unique_ptr<TileHitBox>>> hitboxes;
 };
 
 #endif

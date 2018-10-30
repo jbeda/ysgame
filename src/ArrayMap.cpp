@@ -21,13 +21,14 @@ ArrayMap::ArrayMap() {
 	this->stone = TextureManager::LoadTexture("stone.png");
 	this->stonebg = TextureManager::LoadTexture("stonebg.png");
 	this->LoadMap();
+
+	this->hitboxes.resize(20);
 	for (auto r = 0; r < 20; r++) {
-		std::vector<TileHitBox> v;
+		auto& v = this->hitboxes[r];
 		for (auto c = 0; c < 20; c++) {
 			bool s = this->hbValues[r][c];
-			v.push_back(TileHitBox(r, c, s));
+			v.push_back(std::make_unique<TileHitBox>(r, c, s));
 		}
-		this->hitboxes.push_back(v);
 	}
 	this->src.w = this->src.h = this->dest.w = this->dest.h = 32;
 	this->src.x = this->src.y = this->dest.x = this->dest.y = 0;
@@ -76,8 +77,8 @@ void ArrayMap::DrawMap() {
 	for (auto r = 0; r < 20; r++) {
 		for (auto c = 0; c < 20; c++) {
 			// Render & Update map hitboxes
-			this->hitboxes[r][c].Update();
-			this->hitboxes[r][c].Render();
+			this->hitboxes[r][c]->Update();
+			this->hitboxes[r][c]->Render();
 			this->dest.x = c * 32;
 			this->dest.y = r * 32;
 			type = this->tiles[r][c];

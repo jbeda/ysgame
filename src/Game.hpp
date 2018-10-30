@@ -2,9 +2,16 @@
 #define GAME_HPP
 
 #include <SDL.h>
+#include "GameObject.hpp"
+
+#include <list>
+#include <memory>
+
 typedef int YColor[4];
+class GameObject;
 class Player;
 class Controller;
+class Map;
 
 // WINDOW SIZE
 #define WINDOW_WIDTH 640
@@ -22,17 +29,29 @@ typedef int ReturnCode;
 
 class Game {
 public:
-	Game(const char*, int, int, int, int, bool);
+	Game() {};
+	ReturnCode init(const char* title, int x, int y, int w, int h, bool fullscreen);
+
 	int handleEvents();
 	void clean();
 	void update();
 	void render();
-	ReturnCode constrReturnValue() { return this->rtrnVal; }
-	static SDL_Renderer* renderer;
-	static Controller* getPlrController();
-	static Player* getPlr() { return plr; }
+	void garbageCollect();
+
+	SDL_Renderer* renderer;
+	Controller* getPlrController() { return playersController;  }
+	Player* getPlr() { return plr; }
+
+	void addObject(GameObject* obj);
+
 private:
-	ReturnCode rtrnVal;
-	static Player *plr;
+	Controller* playersController = NULL;
+	std::list<std::unique_ptr<GameObject>> objs;
+	Player *plr = NULL;
+	Map* map = NULL;
+	SDL_Window* wndw= NULL;
+
 };
+
+extern Game* gGame;
 #endif

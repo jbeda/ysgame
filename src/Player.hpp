@@ -9,6 +9,7 @@ public:
 	Player() : GameObject("Player.png", 0, 0) { this->sw = new Sword(); }
 
 	void Update();
+	void Render();
 	Sword* sw;
 	virtual ~Player() {
 		delete sw;

@@ -11,7 +11,7 @@ void Sword::Update() {
 		this->ResetSwing();
 	}
 	if (this->swinging) {
-		if (Game::getPlr()->getRenderFlip() == SDL_FLIP_NONE) {
+		if (gGame->getPlr()->getRenderFlip() == SDL_FLIP_NONE) {
 			this->Rotate(3);
 			this->destRect.x += 1;
 		}
@@ -22,31 +22,31 @@ void Sword::Update() {
 		this->destRect.y += 0.5;
 	}
 	else {
-		this->destRect.y = Game::getPlr()->getLocation()->y + 5;
-		if (Game::getPlr()->getRenderFlip() == SDL_FLIP_NONE)
-			this->destRect.x = Game::getPlr()->getLocation()->x + 20;
+		this->destRect.y = gGame->getPlr()->getLocation()->y + 5;
+		if (gGame->getPlr()->getRenderFlip() == SDL_FLIP_NONE)
+			this->destRect.x = gGame->getPlr()->getLocation()->x + 20;
 		else
-			this->destRect.x = Game::getPlr()->getLocation()->x - 7;
+			this->destRect.x = gGame->getPlr()->getLocation()->x - 7;
 	}
 
 	switch (getControllerButtonState()) {
 	case XButton:
-		if (!Game::getPlr()->getCurrentEffect())
+		if (!gGame->getPlr()->getCurrentEffect())
 			this->Swing();
 		else
-			if (Game::getPlr()->getCurrentEffect()->Use())
-				Game::getPlr()->ClearEffect();
+			if (gGame->getPlr()->getCurrentEffect()->Use())
+				gGame->getPlr()->ClearEffect();
 		break;
 	}
 
 	KeyboardInput ki;
 	GetKeyboardInput(ki);
 	if (ki.attack) {
-		if (!Game::getPlr()->getCurrentEffect())
+		if (!gGame->getPlr()->getCurrentEffect())
 			this->Swing();
 		else
-			if (Game::getPlr()->getCurrentEffect()->Use())
-				Game::getPlr()->ClearEffect();
+			if (gGame->getPlr()->getCurrentEffect()->Use())
+				gGame->getPlr()->ClearEffect();
 	}
 }
 void Sword::ResetSwing() {

@@ -7,7 +7,7 @@ bool Controller::IsControllerEnabled() {
 void Controller::SetControllerEnabled(bool enabled) {
 	isEnabled = enabled;
 }
-#define plrC Game::getPlrController()
+#define plrC gGame->getPlrController()
 ControllerButton getControllerButtonState() {
 	if (!Controller::IsControllerEnabled()) {
 		return (ControllerButton)NULL;

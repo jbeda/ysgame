@@ -42,6 +42,7 @@ GameObject::~GameObject() {
 		SDL_DestroyTexture(this->img);
 	}
 }
+
 #define COLLISION_RANGE 15
 bool GameObject::Collided(Plane p, GameObject& obj) {
 	switch (p) {

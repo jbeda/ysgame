@@ -8,9 +8,8 @@
 #define FRAME_DELAY 1000 / FPS
 
 int main(int argc, char const *argv[]) {
-	Game* game = new Game("ys-game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, false);
-
-	ReturnCode color = game->constrReturnValue();
+	gGame = new Game();
+	ReturnCode color = gGame->init("ys-game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, false);
 	if (color == CODE_RED) {
 		printf("Error: %s\n", SDL_GetError());
 		return 1;
@@ -18,10 +17,11 @@ int main(int argc, char const *argv[]) {
 
 	while (1) {
 		Uint32 frameStart = SDL_GetTicks();
-		Controller::SetControllerEnabled(Game::getPlrController()->IsConnected());
-		game->update();
-		game->render();
-		int code = game->handleEvents();
+		Controller::SetControllerEnabled(gGame->getPlrController()->IsConnected());
+		gGame->update();
+		gGame->render();
+		gGame->garbageCollect();
+		int code = gGame->handleEvents();
 		if (code == EVENT_QUIT)
 			break;
 		int frameTime = SDL_GetTicks() - frameStart;
@@ -29,7 +29,7 @@ int main(int argc, char const *argv[]) {
 			SDL_Delay(FRAME_DELAY - frameTime);
 		}
 	}
-	game->clean();
-	delete game;
+	gGame->clean();
+	delete gGame;
 	return 0;
 }
