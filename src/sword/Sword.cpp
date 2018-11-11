@@ -14,8 +14,7 @@ void Sword::Update() {
 		if (gGame->getPlr()->getRenderFlip() == SDL_FLIP_NONE) {
 			this->Rotate(3);
 			this->destRect.x += 1;
-		}
-		else {
+		} else {
 			this->Rotate(-3);
 			this->destRect.x -= 1;
 		}
@@ -28,25 +27,42 @@ void Sword::Update() {
 		else
 			this->destRect.x = gGame->getPlr()->getLocation()->x - 7;
 	}
+	auto state = getControllerButtonState();
+	if (!this->swinging) {
+		switch (state) {
+		case XButton:
+			if (!this->effectApplied) {
+				if (!gGame->getPlr()->getCurrentEffect()) {
+					this->Swing();
+				} else {
+					if (gGame->getPlr()->getCurrentEffect()->Use())
+						gGame->getPlr()->ClearEffect();
+					this->effectApplied = true;
+				}
+			}
+			break;
+		}
 
-	switch (getControllerButtonState()) {
-	case XButton:
-		if (!gGame->getPlr()->getCurrentEffect())
-			this->Swing();
-		else
-			if (gGame->getPlr()->getCurrentEffect()->Use())
-				gGame->getPlr()->ClearEffect();
-		break;
+		
 	}
 
 	KeyboardInput ki;
 	GetKeyboardInput(ki);
-	if (ki.attack) {
-		if (!gGame->getPlr()->getCurrentEffect())
-			this->Swing();
-		else
-			if (gGame->getPlr()->getCurrentEffect()->Use())
-				gGame->getPlr()->ClearEffect();
+	if (!this->swinging) {
+		if (ki.attack) {
+			if (!this->effectApplied) {
+				if (!gGame->getPlr()->getCurrentEffect()) {
+					this->Swing();
+				} else {
+					if (gGame->getPlr()->getCurrentEffect()->Use())
+						gGame->getPlr()->ClearEffect();
+					this->effectApplied = true;
+				}
+			}
+		}
+	}
+	if (state != XButton && !ki.attack) {
+		this->effectApplied = false;
 	}
 }
 void Sword::ResetSwing() {

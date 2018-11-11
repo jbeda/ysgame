@@ -15,15 +15,3 @@ void Item::Update() {
 		DebugMessage("picked up item");
 	}
 }
-std::string EffectToStr(PlayerEffect effect) {
-	switch (effect) {
-	case PlayerEffect::Grenade:
-		return "Grenade";
-	case PlayerEffect::HoningKnife:
-		return "Honing Throws";
-	case PlayerEffect::RapidThrow:
-		return "Rapid Throw";
-	case PlayerEffect::Wiper:
-		return "Wiper";
-	}
-}

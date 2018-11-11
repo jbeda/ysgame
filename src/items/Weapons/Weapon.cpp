@@ -1,5 +1,6 @@
 #include "Weapon.hpp"
-Weapon::Weapon(PlayerEffect effect) {
+#include "../../util/debugging/notif.h"
+Weapon::Weapon(PlayerEffect effect) : GameObject(NULL, 0, 0) {
 	this->effect = effect;
 	switch (this->effect) {
 	case PlayerEffect::Grenade:
@@ -18,6 +19,18 @@ Weapon::Weapon(PlayerEffect effect) {
 }
 bool Weapon::Use() {
 	this->uses++;
-	// stuff
+	DebugMessage("used other weapon");
 	return (this->uses >= this->maxuses);
+}
+std::string EffectToStr(PlayerEffect effect) {
+	switch (effect) {
+	case PlayerEffect::Grenade:
+		return "Grenade";
+	case PlayerEffect::HoningKnife:
+		return "Honing Knife";
+	case PlayerEffect::RapidThrow:
+		return "Rapid Throw";
+	case PlayerEffect::Wiper:
+		return "Wiper";
+	}
 }

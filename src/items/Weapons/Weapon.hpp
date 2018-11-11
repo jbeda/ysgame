@@ -1,4 +1,6 @@
 #pragma once
+#include "../../GameObject.hpp"
+#include "../../util/include.h"
 enum class PlayerEffect {
 	Wiper,
 	Grenade,
@@ -6,7 +8,7 @@ enum class PlayerEffect {
 	RapidThrow,
 	None
 };
-class Weapon
+class Weapon : GameObject
 {
 public:
 	Weapon(PlayerEffect effect);
@@ -18,3 +20,4 @@ private:
 	int maxuses;
 };
 #define NA Weapon(PlayerEffect::None)
+std::string EffectToStr(PlayerEffect effect);

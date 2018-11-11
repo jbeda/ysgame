@@ -47,7 +47,7 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 	this->map = new ArrayMap();
 	this->plr = new Player();
 	this->addObject(this->plr);
-	//test = new Wiper(10, 10);
+	this->addObject(new Wiper(10, 10));
 	this->addObject(new Enemy(50, 50));
 	return CODE_GREEN;
 }

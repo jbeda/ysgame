@@ -2,8 +2,7 @@
 #include "../GameObject.hpp"
 #include "../util/include.h"
 #include "weapons/Weapon.hpp"
-// For debugging
-std::string EffectToStr(PlayerEffect effect);
+
 class Item : public GameObject {
 public:
 	Item(const char* itemImage, int x, int y, PlayerEffect effect) : GameObject(itemImage, x, y) { 
