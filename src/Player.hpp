@@ -6,7 +6,7 @@ class Player :
 	public GameObject
 {
 public:
-	Player() : GameObject("Player.png", 0, 0) { this->sw = new Sword(); }
+	Player() : GameObject("Player.png", 0, 0, EPlayer) { this->sw = new Sword(); }
 
 	void Update();
 	void Render();

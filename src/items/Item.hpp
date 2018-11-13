@@ -5,7 +5,7 @@
 
 class Item : public GameObject {
 public:
-	Item(const char* itemImage, int x, int y, PlayerEffect effect) : GameObject(itemImage, x, y) { 
+	Item(const char* itemImage, int x, int y, PlayerEffect effect) : GameObject(itemImage, x, y, EItem) { 
 		this->effect = new Weapon(effect); 
 	}
 

@@ -1,5 +1,9 @@
 #pragma once
 #ifdef __cplusplus
-extern "C"
+extern "C" {
 #endif
-void DebugMessage(const char* text);
+	void DebugMessage(const char* text);
+	void OoO();
+#ifdef __cplusplus
+}
+#endif

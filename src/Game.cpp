@@ -50,7 +50,10 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 	this->map = new ArrayMap();
 	this->plr = new Player();
 	this->addObject(this->plr);
-	this->addObject(new Wiper(10, 10));
+	this->addObject(new RapidThrow(0, 10));
+	this->addObject(new Wiper(2, 10));
+	this->addObject(new Grenade(4, 10));
+	this->addObject(new HoningKnife(6, 10));
 	this->addObject(new Enemy(50, 50));
 	return CODE_GREEN;
 }

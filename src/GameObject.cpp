@@ -4,7 +4,8 @@
 #include "Game.hpp"
 #include "util/numbers.h"
 
-GameObject::GameObject(const char* imgPath, int x, int y, int maxhp) {
+GameObject::GameObject(const char* imgPath, int x, int y, EntityType type, int maxhp) {
+	this->type = type;
 	this->id = latestId;
 	latestId++;
 
@@ -53,5 +54,10 @@ bool GameObject::Collided(Plane p, GameObject& obj) {
 		return IsInRange(this->destRect.y, obj.getLocation()->y, COLLISION_RANGE);
 		break;
 	}
+}
+bool GameObject::Radius(GameObject& obj, int radius) {
+	bool x = IsInRange(this->destRect.x, obj.getLocation()->x, radius);
+	bool y = IsInRange(this->destRect.y, obj.getLocation()->y, radius);
+	return x && y;
 }
 int GameObject::latestId = 0;

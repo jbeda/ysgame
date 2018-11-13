@@ -44,7 +44,7 @@ public:
 	InputManager* getInput() { return input; }
 
 	void addObject(GameObject* obj);
-
+	std::list<std::unique_ptr<GameObject>>& getObjectList() { return this->objs; }
 private:
 	std::list<std::unique_ptr<GameObject>> objs;
 	Player *plr = NULL;

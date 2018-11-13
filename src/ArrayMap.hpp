@@ -11,7 +11,7 @@
 
 class TileHitBox : public GameObject {
 public:
-	TileHitBox(int r, int c, bool solid) : GameObject(NULL, c * 32, r * 32) { this->solid = solid; }
+	TileHitBox(int r, int c, bool solid) : GameObject(NULL, c * 32, r * 32, EMap) { this->solid = solid; }
 	void Update() {
 		if (this->solid) {
 			if (this->Collided(Plane::X, *gGame->getPlr()) && this->Collided(Plane::Y, *gGame->getPlr())) {

@@ -5,7 +5,7 @@ class Sword :
 	public GameObject
 {
 public:
-	Sword() : GameObject("Sword.png", 0, 0) { this->rotation = 0; }
+	Sword() : GameObject("Sword.png", 0, 0, EItem) { this->rotation = 0; }
 	void Update();
 	void Swing() { this->swinging = true; }
 	void ResetSwing();
