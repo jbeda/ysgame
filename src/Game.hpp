@@ -3,6 +3,7 @@
 
 #include <SDL.h>
 #include "GameObject.hpp"
+#include "input/InputManager.hpp"
 
 #include <list>
 #include <memory>
@@ -39,18 +40,17 @@ public:
 	void garbageCollect();
 
 	SDL_Renderer* renderer;
-	Controller* getPlrController() { return playersController;  }
 	Player* getPlr() { return plr; }
+	InputManager* getInput() { return input; }
 
 	void addObject(GameObject* obj);
 
 private:
-	Controller* playersController = NULL;
 	std::list<std::unique_ptr<GameObject>> objs;
 	Player *plr = NULL;
 	Map* map = NULL;
-	SDL_Window* wndw= NULL;
-
+	SDL_Window* wndw = NULL;
+	InputManager* input = NULL;
 };
 
 extern Game* gGame;

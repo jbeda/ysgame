@@ -7,8 +7,8 @@
 #include "Player.hpp"
 #include "PyxelMap.hpp"
 #include "ArrayMap.hpp"
-#include "Controller.hpp"
-#include "XBOXController.hpp"
+#include "input/Controller.hpp"
+#include "input/XBOXController.hpp"
 #include "items/Item.hpp"
 
 YColor barrier = { 0, 0, 0, 0 };
@@ -29,7 +29,10 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 		printf("SDL_image could not initialize! IMG_Init Error: %s\n", IMG_GetError());
 		return CODE_RED;
 	}
-	playersController = new XBOXController(1);
+
+	input = new InputManager();
+	input->init();
+
 	unsigned int flags = 0;
 	if (fullscreen)
 		flags = SDL_WINDOW_FULLSCREEN;
@@ -53,6 +56,8 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 }
 
 void Game::update() {
+	input->update();
+
 	for (auto& o : this->objs) {
 		o->Update();
 	}
@@ -81,7 +86,7 @@ void Game::addObject(GameObject * obj) {
 }
 
 void Game::clean() {
-	delete playersController;
+	delete input;
 	delete map;
 
 	SDL_DestroyRenderer(renderer);

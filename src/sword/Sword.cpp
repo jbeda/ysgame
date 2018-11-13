@@ -1,8 +1,6 @@
 #include "Sword.hpp"
 #include "../Player.hpp"
 #include "../Game.hpp"
-#include "../Controller.hpp"
-#include "../Keyboard.hpp"
 #include "../util/debugging/notif.h"
 
 void Sword::Update() {
@@ -27,41 +25,18 @@ void Sword::Update() {
 		else
 			this->destRect.x = gGame->getPlr()->getLocation()->x - 7;
 	}
-	auto state = getControllerButtonState();
-	if (!this->swinging) {
-		switch (state) {
-		case XButton:
-			if (!this->effectApplied) {
-				if (!gGame->getPlr()->getCurrentEffect()) {
-					this->Swing();
-				} else {
-					if (gGame->getPlr()->getCurrentEffect()->Use())
-						gGame->getPlr()->ClearEffect();
-					this->effectApplied = true;
-				}
-			}
-			break;
-		}
 
-		
-	}
-
-	KeyboardInput ki;
-	GetKeyboardInput(ki);
-	if (!this->swinging) {
-		if (ki.attack) {
-			if (!this->effectApplied) {
-				if (!gGame->getPlr()->getCurrentEffect()) {
-					this->Swing();
-				} else {
-					if (gGame->getPlr()->getCurrentEffect()->Use())
-						gGame->getPlr()->ClearEffect();
-					this->effectApplied = true;
-				}
+	if (gGame->getInput()->GetAttack()) {
+		if (!this->swinging && !this->effectApplied) {
+			if (!gGame->getPlr()->getCurrentEffect()) {
+				this->Swing();
+			} else {
+				if (gGame->getPlr()->getCurrentEffect()->Use())
+					gGame->getPlr()->ClearEffect();
+				this->effectApplied = true;
 			}
 		}
-	}
-	if (state != XButton && !ki.attack) {
+	} else {
 		this->effectApplied = false;
 	}
 }
