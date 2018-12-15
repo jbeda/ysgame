@@ -10,7 +10,8 @@ enum EntityType {
 	EPlayer,
 	EEnemy,
 	EMap,
-	EItem
+	EItem,
+	EUI
 };
 class GameObject {
 public:

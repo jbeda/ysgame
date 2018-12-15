@@ -2,7 +2,7 @@
 #include "../Game.hpp"
 bool isEnabled;
 
-const int SENSITIVITY = 10000;
+int sensitivity = 10000;
 
 void Controller::GetJoystickXY(JS & js, bool isLeft)
 {
@@ -13,34 +13,34 @@ void Controller::GetJoystickXY(JS & js, bool isLeft)
 
 	if (isLeft) {
 		short x = this->GetState().Gamepad.sThumbLX;
-		if (x < -SENSITIVITY) {
+		if (x < -sensitivity) {
 			js.x = HorizontalValue::Left;
-		} else if (x > SENSITIVITY) {
+		} else if (x > sensitivity) {
 			js.x = HorizontalValue::Right;
 		} else {
 			js.x = HorizontalValue::None;
 		}
 		short y = this->GetState().Gamepad.sThumbLY;
-		if (y < -SENSITIVITY) {
+		if (y < -sensitivity) {
 			js.y = VerticalValue::Down;
-		} else if (y > SENSITIVITY) {
+		} else if (y > sensitivity) {
 			js.y = VerticalValue::Up;
 		} else {
 			js.y = VerticalValue::None;
 		}
 	} else {
 		short x = this->GetState().Gamepad.sThumbRX;
-		if (x < -SENSITIVITY) {
+		if (x < -sensitivity) {
 			js.x = HorizontalValue::Left;
-		} else if (x > SENSITIVITY) {
+		} else if (x > sensitivity) {
 			js.x = HorizontalValue::Right;
 		} else {
 			js.x = HorizontalValue::None;
 		}
 		short y = this->GetState().Gamepad.sThumbRY;
-		if (y < -SENSITIVITY) {
+		if (y < -sensitivity) {
 			js.y = VerticalValue::Down;
-		} else if (y > SENSITIVITY) {
+		} else if (y > sensitivity) {
 			js.y = VerticalValue::Up;
 		} else {
 			js.y = VerticalValue::None;

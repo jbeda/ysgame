@@ -72,6 +72,9 @@
     <ClCompile Include="src\input\Controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\ui\Form.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Vector2D.hpp">
@@ -242,6 +245,30 @@
     <ClInclude Include="src\input\Controller.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="third_party\imgui\imconfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\imgui\imgui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\imgui\imgui_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\imgui\imstb_rectpack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\imgui\imstb_textedit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\imgui\imstb_truetype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\Form.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\kiss_sdl\kiss_sdl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\Player.png">
@@ -263,5 +290,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="AUTHORS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="third_party\imgui\imgui.lib" />
+    <Library Include="third_party\kiss_sdl\kiss_sdl.lib" />
   </ItemGroup>
 </Project>

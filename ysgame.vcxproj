@@ -82,11 +82,14 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>Z:\C++\ysgame\third_party\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>Z:\C++\ysgame\third_party\imgui;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -95,6 +98,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>Z:\C++\ysgame\third_party\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -102,17 +106,27 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>Z:\C++\ysgame\third_party\imgui;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Link>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kiss_sdl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Z:\C++\ysgame\third_party\kiss_sdl;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>Z:\c++lib\SDL_ttf-VC\include;Z:\C++\ysgame\third_party\kiss_sdl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Link>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kiss_sdl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Z:\C++\ysgame\third_party\kiss_sdl;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>Z:\c++lib\SDL_ttf-VC\include;Z:\C++\ysgame\third_party\kiss_sdl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\input\InputManager.cpp" />
@@ -128,6 +142,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\PyxelMap.cpp" />
     <ClCompile Include="src\TextureManager.cpp" />
+    <ClCompile Include="src\ui\Form.cpp" />
     <ClCompile Include="src\util\debugging\notif.c" />
     <ClCompile Include="src\util\numbers.c" />
     <ClCompile Include="src\Vector2D.cpp" />
@@ -148,11 +163,19 @@
     <ClInclude Include="src\Map.hpp" />
     <ClInclude Include="src\PyxelMap.hpp" />
     <ClInclude Include="src\TextureManager.hpp" />
+    <ClInclude Include="src\ui\Form.hpp" />
     <ClInclude Include="src\util\debugging\notif.h" />
     <ClInclude Include="src\util\include.h" />
     <ClInclude Include="src\util\numbers.h" />
     <ClInclude Include="src\Vector2D.hpp" />
     <ClInclude Include="src\sword\Sword.hpp" />
+    <ClInclude Include="third_party\imgui\imconfig.h" />
+    <ClInclude Include="third_party\imgui\imgui.h" />
+    <ClInclude Include="third_party\imgui\imgui_internal.h" />
+    <ClInclude Include="third_party\imgui\imstb_rectpack.h" />
+    <ClInclude Include="third_party\imgui\imstb_textedit.h" />
+    <ClInclude Include="third_party\imgui\imstb_truetype.h" />
+    <ClInclude Include="third_party\kiss_sdl\kiss_sdl.h" />
     <ClInclude Include="third_party\nlohmann\json.hpp" />
     <ClInclude Include="third_party\rapidjson\allocators.h" />
     <ClInclude Include="third_party\rapidjson\cursorstreamwrapper.h" />
@@ -206,6 +229,10 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="AUTHORS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="third_party\imgui\imgui.lib" />
+    <Library Include="third_party\kiss_sdl\kiss_sdl.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
