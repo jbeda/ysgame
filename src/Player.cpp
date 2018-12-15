@@ -1,24 +1,40 @@
 #include "Game.hpp"
 #include "Player.hpp"
 #include "util/debugging/notif.h"
-
+#include "ArrayMap.hpp"
 const int moveIncrement = 2;
-
+#define HitBoxArray (*((ArrayMap*)gGame->getMap())->getHitBoxes())
 void Player::Update() {
 	auto move = gGame->getInput()->GetMove();
-
+	
 	if (move.x == XMove::XLeft) {
 		this->destRect.x -= moveIncrement;
+		if (PIX2TILE(this->destRect.x) < 0)
+			this->destRect.x += moveIncrement;
 		this->currentFlip = SDL_FLIP_HORIZONTAL;
+		if (gGame->getMap()->IsMapBarrierAtCoord(this->destRect.x, this->destRect.y))
+			this->destRect.x += moveIncrement;
 	} else if (move.x == XMove::XRight) {
 		this->destRect.x += moveIncrement;
+		if (PIX2TILE(this->destRect.x) > HitBoxArray.size())
+			this->destRect.x -= moveIncrement;
 		this->currentFlip = SDL_FLIP_NONE;
+		if (gGame->getMap()->IsMapBarrierAtCoord(this->destRect.x, this->destRect.y))
+			this->destRect.x -= moveIncrement;
 	}
 
 	if (move.y == YMove::YUp) {
 		this->destRect.y -= moveIncrement;
+		if (PIX2TILE(this->destRect.y) < 0)
+			this->destRect.y += moveIncrement;
+		if (gGame->getMap()->IsMapBarrierAtCoord(this->destRect.x, this->destRect.y))
+			this->destRect.y += moveIncrement;
 	} else if (move.y == YMove::YDown) {
 		this->destRect.y += moveIncrement;
+		if (PIX2TILE(this->destRect.y) > HitBoxArray[this->destRect.x / 32].size())
+			this->destRect.y -= moveIncrement;
+		if (gGame->getMap()->IsMapBarrierAtCoord(this->destRect.x, this->destRect.y))
+			this->destRect.y -= moveIncrement;
 	}
 
 	this->sw->Update();

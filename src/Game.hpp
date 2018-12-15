@@ -45,6 +45,7 @@ public:
 
 	void addObject(GameObject* obj);
 	std::list<std::unique_ptr<GameObject>>& getObjectList() { return this->objs; }
+	Map* getMap() { return this->map; }
 private:
 	std::list<std::unique_ptr<GameObject>> objs;
 	Player *plr = NULL;

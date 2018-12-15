@@ -26,6 +26,7 @@ public:
 	void Render() {
 		SDL_RenderDrawRect(gGame->renderer, &this->destRect);
 	}
+	bool IsSolid() { return this->solid; }
 private:
 	bool solid;
 };
@@ -35,6 +36,8 @@ public:
 	~ArrayMap();
 	void LoadMap();
 	void DrawMap();
+	bool IsMapBarrierAtCoord(int pixelX, int pixelY);
+	std::vector<std::vector<std::unique_ptr<TileHitBox>>>* getHitBoxes() { return &this->hitboxes; }
 private:
 	int tileRows = 0;
 	int tileCols = 0;

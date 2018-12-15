@@ -105,3 +105,11 @@ void ArrayMap::DrawMap() {
 		}
 	}
 }
+bool ArrayMap::IsMapBarrierAtCoord(int pixelX, int pixelY) {
+	ArrayMap* am = (ArrayMap*)gGame->getMap();
+	printf("Looking at pixel %d, %d\n", pixelX, pixelY);
+	printf("  Looking at tile %d, %d\n", pixelX / 32, pixelY / 32);
+	TileHitBox* hb = (*am->getHitBoxes())[pixelY / 32][pixelX / 32].get();
+	printf("  solid? %d\n", hb->IsSolid());
+	return hb->IsSolid();
+}
