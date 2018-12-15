@@ -1,0 +1,3 @@
+[submodule "third_party/kiss_sdl"]
+	path = third_party/kiss_sdl
+	url = https://github.com/actsl/kiss_sdl.git

@@ -1,5 +1,5 @@
 #include "Form.hpp"
-#include <kiss_sdl.h>
+#include "kiss_sdl/kiss_sdl.h"
 #include "../util/debugging/notif.h"
 UIForm::UIForm(int x, int y) : GameObject(NULL, x, y, EUI) {
 	// stuff

@@ -16,6 +16,9 @@
     <Filter Include="Header Files\Json">
       <UniqueIdentifier>{1fab69b1-ef47-4697-a9dc-a0ca1bfc8c4f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\KISS">
+      <UniqueIdentifier>{d4430a5a-6db6-4333-b7c2-c108a099886b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -74,6 +77,18 @@
     </ClCompile>
     <ClCompile Include="src\ui\Form.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\kiss_sdl\kiss_draw.c">
+      <Filter>Source Files\KISS</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\kiss_sdl\kiss_general.c">
+      <Filter>Source Files\KISS</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\kiss_sdl\kiss_posix.c">
+      <Filter>Source Files\KISS</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\kiss_sdl\kiss_widgets.c">
+      <Filter>Source Files\KISS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -290,9 +305,5 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="AUTHORS" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="third_party\imgui\imgui.lib" />
-    <Library Include="third_party\kiss_sdl\kiss_sdl.lib" />
   </ItemGroup>
 </Project>
