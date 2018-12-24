@@ -40,9 +40,9 @@ public:
 	void garbageCollect();
 
 	SDL_Renderer* renderer;
+	void SetRendererColor(YColor color);
 	Player* getPlr() { return plr; }
 	InputManager* getInput() { return input; }
-
 	void addObject(GameObject* obj);
 	std::list<std::unique_ptr<GameObject>>& getObjectList() { return this->objs; }
 	Map* getMap() { return this->map; }

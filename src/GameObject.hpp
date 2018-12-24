@@ -33,6 +33,7 @@ public:
 	EntityType getObjType() { return this->type; }
 	bool Collided(Plane p, GameObject& obj);
 	bool Radius(GameObject& obj, int radius);
+	int getID() { return this->id; }
 protected:
 	SDL_Rect srcRect;
 	SDL_Rect destRect;

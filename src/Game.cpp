@@ -2,6 +2,8 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
+#include "ui/Form.hpp"
 #include "GameObject.hpp"
 #include "Enemy.hpp"
 #include "Player.hpp"
@@ -15,8 +17,8 @@ YColor barrier = { 0, 0, 0, 0 };
 
 Game* gGame = NULL;
 
-void SetRendererColor(SDL_Renderer* ren, YColor color) {
-	SDL_SetRenderDrawColor(ren, color[0], color[1], color[2], color[3]);
+void Game::SetRendererColor(YColor color) {
+	SDL_SetRenderDrawColor(this->renderer, color[0], color[1], color[2], color[3]);
 }
 
 ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullscreen) {
@@ -29,7 +31,11 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 		printf("SDL_image could not initialize! IMG_Init Error: %s\n", IMG_GetError());
 		return CODE_RED;
 	}
-
+	if (TTF_Init() != 0) {
+		printf("SDL_ttf could not initialize! TTF_Init Error: %s\n", TTF_GetError());
+		return CODE_RED;
+	}
+	Widget::Arial = TTF_OpenFont("assets/Arial.ttf", 12);
 	input = new InputManager();
 	input->init();
 
@@ -46,15 +52,15 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 		return CODE_RED;
 	}
 	//map = new PyxelMap(std::string("outsidetiles"));
-
+	UIForm* f = new UIForm(10, 10, 200, 100);
+	Widget* wid = new Widget(f, 10, 10, 100, 100, WLabel, "hi", Widget::Arial);
 	this->map = new ArrayMap();
 	this->plr = new Player();
 	this->addObject(this->plr);
-	this->addObject(new RapidThrow(0, 10));
-	this->addObject(new Wiper(2, 10));
-	this->addObject(new Grenade(4, 10));
-	this->addObject(new HoningKnife(6, 10));
 	this->addObject(new Enemy(50, 50));
+	this->addObject(f);
+	this->addObject(wid);
+	f->Activate();
 	return CODE_GREEN;
 }
 
@@ -67,7 +73,7 @@ void Game::update() {
 }
 
 void Game::render() {
-	SetRendererColor(renderer, barrier);
+	this->SetRendererColor(barrier);
 	SDL_RenderClear(renderer);
 	map->DrawMap();
 
@@ -89,11 +95,13 @@ void Game::addObject(GameObject * obj) {
 }
 
 void Game::clean() {
+	TTF_CloseFont(Widget::Arial);
 	delete input;
 	delete map;
 
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(wndw);
+	TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();
 }
