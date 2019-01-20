@@ -20,5 +20,5 @@ protected:
 };
 #define Grenade(x, y) Item("Grenade.png", (x * 32) + 1, (y * 32) + 1, PlayerEffect::Grenade)
 #define Wiper(x, y) Item("Wiper.png", (x * 32) + 1, (y * 32) + 1, PlayerEffect::Wiper)
-#define HoningKnife(x, y) Item("Honing.png", (x * 32) + 1, (y * 32) + 1, PlayerEffect::HoningKnife)
+#define HomingKnife(x, y) Item("Honing.png", (x * 32) + 1, (y * 32) + 1, PlayerEffect::HomingKnife)
 #define RapidThrow(x, y) Item("RapidThrow.png", (x * 32) + 1, (y * 32) + 1, PlayerEffect::RapidThrow)

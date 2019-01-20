@@ -24,7 +24,11 @@ void Game::SetRendererColor(YColor color) {
 ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullscreen) {
 	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
 	if (SDL_Init(SDL_INIT_EVERYTHING & ~(SDL_INIT_HAPTIC | SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER)) != 0)
-		throw "oops";
+	{
+		printf("SDL_Init could not initialize! Error: %s\n", SDL_GetError());
+		return CODE_RED;
+	}
+
 	int imgFlags = IMG_INIT_PNG;
 	if (!(IMG_Init(imgFlags) & imgFlags))
 	{
@@ -52,14 +56,16 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 		return CODE_RED;
 	}
 	//map = new PyxelMap(std::string("outsidetiles"));
-	UIForm* f = new UIForm(10, 10, 200, 100);
-	Widget* wid = new Widget(f, 10, 10, 100, 100, WLabel, "hi", Widget::Arial);
+	YColor fc = { 255,255,255,255 };
+	YColor wc = { 0,0,0,255 };
+	UIForm* f = new UIForm(10, 10, 200, 100, fc);
+	Widget* wid = new Widget(f, 10, 10, 100, 100, WLabel, "hi", Widget::Arial, wc);
 	this->map = new ArrayMap();
 	this->plr = new Player();
 	this->addObject(this->plr);
 	this->addObject(new Enemy(50, 50));
-	this->addObject(f);
 	this->addObject(wid);
+	this->addObject(f);
 	f->Activate();
 	return CODE_GREEN;
 }

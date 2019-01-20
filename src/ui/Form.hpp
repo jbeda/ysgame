@@ -9,11 +9,11 @@ enum WidgetType {
 	WTextEdit
 };
 class Widget;
-extern std::list<std::unique_ptr<Widget>> gWidgetIDs;
+extern std::list<Widget*> gWidgetIDs;
 class UIForm;
 class Widget : public GameObject {
 public:
-	Widget(UIForm* parent, int pixRelativeX, int pixRelativeY, int pixW, int pixH, WidgetType type, std::string text, TTF_Font* font);
+	Widget(UIForm* parent, int pixRelativeX, int pixRelativeY, int pixW, int pixH, WidgetType type, std::string text, TTF_Font* font, YColor c);
 	~Widget();
 	void Render();
 	void Activate() { this->activated = true; }
@@ -29,7 +29,7 @@ protected:
 };
 class UIForm : public GameObject {
 public:
-	UIForm(int pixX, int pixY, int pixW, int pixH);
+	UIForm(int pixX, int pixY, int pixW, int pixH, YColor c);
 	void Activate() {
 		this->activated = true;
 		for (auto& widget : gWidgetIDs) {
@@ -58,6 +58,7 @@ public:
 	int getPixW() { return this->pos.w; }
 	int getPixH() { return this->pos.h; }
 protected:
+	SDL_Color c;
 	SDL_Rect pos;
 	bool activated;
 };

@@ -4,7 +4,7 @@
 enum class PlayerEffect {
 	Wiper,
 	Grenade,
-	HoningKnife,
+	HomingKnife,
 	RapidThrow,
 	None
 };

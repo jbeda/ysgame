@@ -8,6 +8,7 @@
 #include <list>
 #include <memory>
 
+// DEFINITIONS
 typedef int YColor[4];
 class GameObject;
 class Player;

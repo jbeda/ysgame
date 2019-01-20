@@ -9,7 +9,7 @@ Weapon::Weapon(PlayerEffect effect) : GameObject(NULL, 0, 0, EItem) {
 	case PlayerEffect::Grenade:
 		this->maxuses = 3;
 		break;
-	case PlayerEffect::HoningKnife:
+	case PlayerEffect::HomingKnife:
 		this->maxuses = 5;
 		break;
 	case PlayerEffect::RapidThrow:
@@ -35,7 +35,7 @@ bool Weapon::Use() {
 					o->hurt(1);
 			}
 		break;
-	case PlayerEffect::HoningKnife:
+	case PlayerEffect::HomingKnife:
 		OoO();
 		break;
 	case PlayerEffect::RapidThrow:
@@ -53,7 +53,7 @@ std::string EffectToStr(PlayerEffect effect) {
 	switch (effect) {
 	case PlayerEffect::Grenade:
 		return "Grenade";
-	case PlayerEffect::HoningKnife:
+	case PlayerEffect::HomingKnife:
 		return "Honing Knife";
 	case PlayerEffect::RapidThrow:
 		return "Rapid Throw";
