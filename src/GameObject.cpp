@@ -54,6 +54,7 @@ bool GameObject::Collided(Plane p, GameObject& obj) {
 		return IsInRange(this->destRect.y, obj.getLocation()->y, COLLISION_RANGE);
 		break;
 	}
+	return FALSE;
 }
 bool GameObject::Radius(GameObject& obj, int radius) {
 	bool x = IsInRange(this->destRect.x, obj.getLocation()->x, radius);

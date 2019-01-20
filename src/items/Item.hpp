@@ -16,7 +16,7 @@ public:
 protected:
 	Weapon* effect = NULL;
 	std::string name, desc;
-	int uses;
+	int uses = 0;
 };
 #define Grenade(x, y) Item("Grenade.png", (x * 32) + 1, (y * 32) + 1, PlayerEffect::Grenade)
 #define Wiper(x, y) Item("Wiper.png", (x * 32) + 1, (y * 32) + 1, PlayerEffect::Wiper)

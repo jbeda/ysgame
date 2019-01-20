@@ -9,7 +9,7 @@
 #include <memory>
 
 // DEFINITIONS
-typedef int YColor[4];
+typedef Uint8 YColor[4];
 class GameObject;
 class Player;
 class Controller;
@@ -40,7 +40,7 @@ public:
 	void render();
 	void garbageCollect();
 
-	SDL_Renderer* renderer;
+	SDL_Renderer* renderer = NULL;
 	void SetRendererColor(YColor color);
 	Player* getPlr() { return plr; }
 	InputManager* getInput() { return input; }

@@ -60,4 +60,5 @@ std::string EffectToStr(PlayerEffect effect) {
 	case PlayerEffect::Wiper:
 		return "Wiper";
 	}
+	return "UNKNOWN";
 }

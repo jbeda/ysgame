@@ -6,7 +6,7 @@ UIForm::UIForm(int x, int y, int w, int h, YColor c) : GameObject(NULL, x, y, EU
 	this->pos.y = y;
 	this->pos.w = w;
 	this->pos.h = h;
-	//this->c = { c[0], c[1], c[2], c[3] };
+	this->c = { c[0], c[1], c[2], c[3] };
 }
 void UIForm::Render() {
 	if (this->activated) {
