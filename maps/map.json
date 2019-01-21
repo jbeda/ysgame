@@ -1,4 +1,11 @@
 {
+  "textures": [
+    "dirt.png",
+    "grass.png",
+    "water.png",
+    "stone.png",
+    "stonebg.png"
+  ],
   "tilerows": 20,
   "tilecols": 20,
   "tiles": [

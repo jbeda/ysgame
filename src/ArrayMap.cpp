@@ -8,18 +8,7 @@
 
 #include <nlohmann/json.hpp>
 
-#define DIRT 0
-#define GRASS 1
-#define WATER 2
-#define STONE 3
-#define STONE_BACKGROUND 4
-
 ArrayMap::ArrayMap() {
-	this->dirt = TextureManager::LoadTexture("dirt.png");
-	this->grass = TextureManager::LoadTexture("grass.png");
-	this->water = TextureManager::LoadTexture("water.png");
-	this->stone = TextureManager::LoadTexture("stone.png");
-	this->stonebg = TextureManager::LoadTexture("stonebg.png");
 	this->LoadMap();
 
 	this->hitboxes.resize(20);
@@ -34,16 +23,15 @@ ArrayMap::ArrayMap() {
 	this->src.x = this->src.y = this->dest.x = this->dest.y = 0;
 }
 ArrayMap::~ArrayMap() {
-	SDL_DestroyTexture(this->water);
-	SDL_DestroyTexture(this->dirt);
-	SDL_DestroyTexture(this->grass);
-	SDL_DestroyTexture(this->stonebg);
-	SDL_DestroyTexture(this->stone);
+	for (auto t : this->textures) {
+		SDL_DestroyTexture(t);
+	}
 }
 
 struct JsonMap {
 	int tileRows;
 	int tileCols;
+	std::vector<std::string> textures;
 	std::vector<std::vector<int>> tiles;
 	std::vector<std::vector<int>> hitBoxes;
 };
@@ -53,6 +41,7 @@ void from_json(const nlohmann::json& j, JsonMap& m) {
 	m.tileRows = j["tilerows"].get<int>();
 	m.tiles = j["tiles"].get<std::vector<std::vector<int>>>();
 	m.hitBoxes = j["hitboxes"].get<std::vector<std::vector<int>>>();
+	m.textures = j["textures"].get<std::vector<std::string>>();
 }
 
 void ArrayMap::LoadMap() {
@@ -70,6 +59,12 @@ void ArrayMap::LoadMap() {
 	this->tileRows = m.tileRows;
 	this->tiles = m.tiles;
 	this->hbValues = m.hitBoxes;
+
+	// Load up the textures
+	for (auto tname : m.textures) {
+		auto t = TextureManager::LoadTexture(tname.c_str());
+		this->textures.push_back(t);
+	}
 }
 
 void ArrayMap::DrawMap() {
@@ -81,30 +76,16 @@ void ArrayMap::DrawMap() {
 			this->hitboxes[r][c]->Render();
 			this->dest.x = c * 32;
 			this->dest.y = r * 32;
-			type = this->tiles[r][c];
-			switch (type) {
-			case DIRT:
-				TextureManager::Draw(this->dirt, this->src, this->dest);
-				break;
-			case GRASS:
-				TextureManager::Draw(this->grass, this->src, this->dest);
-				break;
-			case WATER:
-				TextureManager::Draw(this->water, this->src, this->dest);
-				break;
-			case STONE:
-				TextureManager::Draw(this->stone, this->src, this->dest);
-				break;
-			case STONE_BACKGROUND:
-				TextureManager::Draw(this->stonebg, this->src, this->dest);
-				break;
-			default:
+			auto tileTexture = this->tiles[r][c];
+			if (tileTexture < this->textures.size()) {
+				TextureManager::Draw(this->textures[tileTexture], this->src, this->dest);
+			} else {
 				printf("ERROR: incorrect tile code in map array");
-				break;
 			}
 		}
 	}
 }
+
 bool ArrayMap::IsMapBarrierAtCoord(int pixelX, int pixelY) {
 	ArrayMap* am = (ArrayMap*)gGame->getMap();
 	printf("Looking at pixel %d, %d\n", pixelX, pixelY);

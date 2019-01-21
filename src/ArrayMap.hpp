@@ -43,11 +43,7 @@ private:
 	int tileCols = 0;
 
 	SDL_Rect src, dest;
-	SDL_Texture* dirt;
-	SDL_Texture* grass;
-	SDL_Texture* water;
-	SDL_Texture* stone;
-	SDL_Texture* stonebg;
+	std::vector<SDL_Texture*> textures;
 	std::vector<std::vector<int>> tiles;
 	std::vector<std::vector<int>> hbValues;
 	std::vector<std::vector<std::unique_ptr<TileHitBox>>> hitboxes;
