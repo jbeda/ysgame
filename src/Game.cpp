@@ -50,6 +50,9 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 	if (wndw == NULL) {
 		return CODE_RED;
 	}
+	SDL_Surface* tempsurf = IMG_Load("assets\\Player.png");
+	SDL_SetWindowIcon(wndw, tempsurf);
+	SDL_FreeSurface(tempsurf);
 	renderer = SDL_CreateRenderer(wndw, -1, SDL_RENDERER_PRESENTVSYNC);
 	if (renderer == NULL) {
 		SDL_DestroyWindow(wndw);
