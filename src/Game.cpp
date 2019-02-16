@@ -39,7 +39,11 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 		printf("SDL_ttf could not initialize! TTF_Init Error: %s\n", TTF_GetError());
 		return CODE_RED;
 	}
-	Widget::Arial = TTF_OpenFont("assets/Arial.ttf", 12);
+	Widget::Arial = TTF_OpenFont("assets/arial.ttf", 12);
+	if (Widget::Arial == NULL) {
+		printf("Could not load Arial font! TTF_OpenFont Error: %s\n", TTF_GetError());
+		return CODE_RED;
+	}
 	input = new InputManager();
 	input->init();
 
