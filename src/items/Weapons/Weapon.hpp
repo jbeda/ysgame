@@ -14,6 +14,9 @@ public:
 	Weapon(PlayerEffect effect);
 	PlayerEffect getEnumeration() { return this->effect; }
 	bool Use();
+	int UsesLeft() {
+		return this->uses;
+	}
 private:
 	PlayerEffect effect = PlayerEffect::None;
 	int uses = 0;

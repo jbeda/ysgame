@@ -59,17 +59,14 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 		return CODE_RED;
 	}
 	//map = new PyxelMap(std::string("outsidetiles"));
-	YColor fc = { 255,255,255,255 };
-	YColor wc = { 0,0,0,255 };
-	UIForm* f = new UIForm(10, 10, 200, 100, fc);
-	Widget* wid = new Widget(f, 10, 10, 100, 100, WLabel, "hi", Widget::Arial, wc);
 	this->map = new ArrayMap();
 	this->plr = new Player();
 	this->addObject(this->plr);
 	this->addObject(new Enemy(50, 50));
-	this->addObject(wid);
-	this->addObject(f);
-	f->Activate();
+	// test items {
+	this->addObject(new Grenade(4, 4));
+	this->addObject(new Wiper(6, 4));
+	// }
 	return CODE_GREEN;
 }
 
