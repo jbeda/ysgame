@@ -2,6 +2,7 @@
 #include "../../Game.hpp"
 #include "../../Player.hpp"
 #include "../../util/debugging/notif.h"
+#include "../../sword/RapidKnife.hpp"
 #define plr gGame->getPlr()
 Weapon::Weapon(PlayerEffect effect) : GameObject(NULL, 0, 0, EItem) {
 	this->effect = effect;
@@ -13,7 +14,7 @@ Weapon::Weapon(PlayerEffect effect) : GameObject(NULL, 0, 0, EItem) {
 		this->maxuses = 5;
 		break;
 	case PlayerEffect::RapidThrow:
-		this->maxuses = 20;
+		this->maxuses = 19;
 		break;
 	case PlayerEffect::Wiper:
 		this->maxuses = 1;
@@ -39,7 +40,11 @@ bool Weapon::Use() {
 		OoO();
 		break;
 	case PlayerEffect::RapidThrow:
-		OoO();
+	{
+		Sword* x = new RapidKnife();
+		gGame->addObject(x);
+		x->Swing();
+	}
 		break;
 	case PlayerEffect::Wiper:
 		for (auto& o : gGame->getObjectList())

@@ -65,7 +65,7 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 	this->addObject(new Enemy(50, 50));
 	// test items {
 	this->addObject(new Grenade(4, 4));
-	this->addObject(new Wiper(6, 4));
+	this->addObject(new RapidThrow(6, 4));
 	// }
 	return CODE_GREEN;
 }

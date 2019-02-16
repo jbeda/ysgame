@@ -14,6 +14,7 @@ void Item::Update() {
 			this->effect = NULL;
 			this->dead = true;
 			DebugMessage("picked up item");
+			this->form->Deactivate();
 		}
 	} else {
 		this->form->Deactivate();
