@@ -8,5 +8,5 @@ public:
 
 	virtual void DrawMap() = 0;
 
-	virtual bool IsMapBarrierAtCoord(int pixelX, int pixelY) = 0;
+	virtual bool IsOutOfBounds(const SDL_Rect& r) = 0;
 };

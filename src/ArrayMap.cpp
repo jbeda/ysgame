@@ -10,18 +10,8 @@
 
 ArrayMap::ArrayMap() {
 	this->LoadMap();
-
-	this->hitboxes.resize(20);
-	for (auto r = 0; r < 20; r++) {
-		auto& v = this->hitboxes[r];
-		for (auto c = 0; c < 20; c++) {
-			bool s = this->hbValues[r][c];
-			v.push_back(std::make_unique<TileHitBox>(r, c, s));
-		}
-	}
-	this->src.w = this->src.h = this->dest.w = this->dest.h = 32;
-	this->src.x = this->src.y = this->dest.x = this->dest.y = 0;
 }
+
 ArrayMap::~ArrayMap() {
 	for (auto t : this->textures) {
 		SDL_DestroyTexture(t);
@@ -31,6 +21,7 @@ ArrayMap::~ArrayMap() {
 struct JsonMap {
 	int tileRows;
 	int tileCols;
+	int tileSize;
 	std::vector<std::string> textures;
 	std::vector<std::vector<int>> tiles;
 	std::vector<std::vector<int>> hitBoxes;
@@ -39,6 +30,7 @@ struct JsonMap {
 void from_json(const nlohmann::json& j, JsonMap& m) {
 	m.tileCols = j["tilecols"].get<int>();
 	m.tileRows = j["tilerows"].get<int>();
+	m.tileSize = j["tilesize"].get<int>();
 	m.tiles = j["tiles"].get<std::vector<std::vector<int>>>();
 	m.hitBoxes = j["hitboxes"].get<std::vector<std::vector<int>>>();
 	m.textures = j["textures"].get<std::vector<std::string>>();
@@ -57,6 +49,7 @@ void ArrayMap::LoadMap() {
 	// Pull data out in more useful way
 	this->tileCols = m.tileCols;
 	this->tileRows = m.tileRows;
+	this->tileSize = m.tileSize;
 	this->tiles = m.tiles;
 	this->hbValues = m.hitBoxes;
 
@@ -69,16 +62,18 @@ void ArrayMap::LoadMap() {
 
 void ArrayMap::DrawMap() {
 	int type;
-	for (auto r = 0; r < 20; r++) {
-		for (auto c = 0; c < 20; c++) {
-			// Render & Update map hitboxes
-			this->hitboxes[r][c]->Update();
-			this->hitboxes[r][c]->Render();
-			this->dest.x = c * 32;
-			this->dest.y = r * 32;
+	SDL_Rect src, dest;
+
+	src.w = src.h = dest.w = dest.h = this->tileSize;
+	src.x = src.y = dest.x = dest.y = 0;
+
+	for (auto r = 0; r < this->tileRows; r++) {
+		for (auto c = 0; c < this->tileCols; c++) {
+			dest.x = c * this->tileSize;
+			dest.y = r * this->tileSize;
 			auto tileTexture = this->tiles[r][c];
 			if (tileTexture < this->textures.size()) {
-				TextureManager::Draw(this->textures[tileTexture], this->src, this->dest);
+				TextureManager::Draw(this->textures[tileTexture], src, dest);
 			} else {
 				printf("ERROR: incorrect tile code in map array");
 			}
@@ -86,11 +81,43 @@ void ArrayMap::DrawMap() {
 	}
 }
 
+bool ArrayMap::IsOutOfBounds(const SDL_Rect& r) {
+	// Make sure that we aren't off the edge of the map
+	if (r.x < 0 || r.y < 0
+		|| r.x + r.w > this->tileCols*this->tileSize
+		|| r.y + r.h > this->tileRows*this->tileSize) {
+		return true;
+	}
+
+	// Check to make sure we aren't overlapping with a barriar.
+	// We do this by getting each of the bounding corners of
+	// the incoming rect and checking if they are inside a map
+	// barrier tile.
+	if (this->IsMapBarrierAtCoord(r.x, r.y)) {
+		return true;
+	}
+	if (this->IsMapBarrierAtCoord(r.x+r.w, r.y)) {
+		return true;
+	}
+	if (this->IsMapBarrierAtCoord(r.x, r.y+r.h)) {
+		return true;
+	}
+	if (this->IsMapBarrierAtCoord(r.x+r.w, r.y+r.h)) {
+		return true;
+	}
+
+	return false;
+}
+
+// Check to see if a coordinate is inside a tile marked as a
+// map barrier.
 bool ArrayMap::IsMapBarrierAtCoord(int pixelX, int pixelY) {
-	ArrayMap* am = (ArrayMap*)gGame->getMap();
-	printf("Looking at pixel %d, %d\n", pixelX, pixelY);
-	printf("  Looking at tile %d, %d\n", pixelX / 32, pixelY / 32);
-	TileHitBox* hb = (*am->getHitBoxes())[pixelY / 32][pixelX / 32].get();
-	printf("  solid? %d\n", hb->IsSolid());
-	return hb->IsSolid();
+	// Do simple integer division to translate a pixel dimension
+	// to a tile dimension.  This will discard/truncate any remainder.
+	int tileX = pixelX / this->tileSize;
+	int tileY = pixelY / this->tileSize;
+	if (this->hbValues[tileY][tileX]) {
+		return true;
+	}
+	return false;
 }
