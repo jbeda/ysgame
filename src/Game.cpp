@@ -15,7 +15,7 @@
 #include "input/XBOXController.hpp"
 #include "items/Item.hpp"
 
-Mix_Music* testmusic = NULL;
+Music* lvl1music = NULL;
 
 YColor barrier = { 0, 0, 0, 0 };
 
@@ -81,8 +81,9 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 	this->addObject(new RapidThrow(4, 4));
 	this->addObject(new HomingKnife(6, 4));
 	// }
-	testmusic = LoadMP3("assets/3x_Osc_only.mp3");
-	PlayMP3(testmusic, -1);
+	SoundEffect::LoadSFX();
+	lvl1music = Music::LoadMP3("assets/3x_Osc_only.mp3");
+	Music::PlayMP3(lvl1music, -1);
 	return CODE_GREEN;
 }
 
@@ -120,8 +121,9 @@ void Game::clean() {
 	TTF_CloseFont(Widget::Consolas);
 	delete input;
 	delete map;
-	StopMP3();
-	UnloadMP3(testmusic);
+	Music::StopMP3();
+	Music::UnloadMP3(lvl1music);
+	SoundEffect::UnloadSFX();
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(wndw);
 	Mix_CloseAudio();

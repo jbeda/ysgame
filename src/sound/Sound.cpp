@@ -1,22 +1,35 @@
 #include "Sound.hpp"
-Mix_Music* LoadMP3(std::string audioFP) {
-	return Mix_LoadMUS(audioFP.c_str());
+Music* Music::LoadMP3(std::string audioFP) {
+	return new Music(Mix_LoadMUS(audioFP.c_str()));
 }
-void UnloadMP3(Mix_Music* music) {
-	Mix_FreeMusic(music);
+void Music::UnloadMP3(Music* music) {
+	Mix_FreeMusic(music->mp3);
+	delete music;
 }
-void PlayMP3(Mix_Music* music, int loops) {
-	Mix_PlayMusic(music, loops);
+void Music::PlayMP3(Music* music, int loops) {
+	Mix_PlayMusic(music->mp3, loops);
 }
-void StopMP3() {
+void Music::StopMP3() {
 	Mix_HaltMusic();
 }
-Mix_Chunk* LoadOGG(std::string audioFP) {
-	return Mix_LoadWAV(audioFP.c_str());
+namespace SFX {
+	SoundEffect* ThrowKnife = NULL;
 }
-void UnloadOGG(Mix_Chunk* chunk) {
-	Mix_FreeChunk(chunk);
+SoundEffect* SoundEffect::LoadOGG(std::string audioFP) {
+	return new SoundEffect(Mix_LoadWAV(audioFP.c_str()));
 }
-void PlayOGG(Mix_Chunk* chunk) {
-	Mix_PlayChannel(-1, chunk, 0);
+void SoundEffect::UnloadOGG(SoundEffect* sfx) {
+	Mix_FreeChunk(sfx->ogg);
+	delete sfx;
+}
+void SoundEffect::PlayOGG(SoundEffect* sfx) {
+	Mix_PlayChannel(-1, sfx->ogg, 0);
+}
+void SoundEffect::LoadSFX() {
+	using namespace SFX;
+	ThrowKnife = LoadOGG("assets/sfx/throwknife.ogg");
+}
+void SoundEffect::UnloadSFX() {
+	using namespace SFX;
+	UnloadOGG(ThrowKnife);
 }

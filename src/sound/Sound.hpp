@@ -2,10 +2,31 @@
 #include <SDL.h>
 #include <SDL_mixer.h>
 #include <string>
-Mix_Music* LoadMP3(std::string audioFP);
-void UnloadMP3(Mix_Music* music);
-void PlayMP3(Mix_Music* music, int loops);
-void StopMP3();
-Mix_Chunk* LoadOGG(std::string audioFP);
-void UnloadOGG(Mix_Chunk* chunk);
-void PlayOGG(Mix_Chunk* chunk);
+class Music {
+public:
+	static Music* LoadMP3(std::string audioFP);
+	static void UnloadMP3(Music* music);
+	static void PlayMP3(Music* music, int loops);
+	static void StopMP3();
+protected:
+	Music(Mix_Music* music) {
+		this->mp3 = music;
+	}
+	Mix_Music* mp3;
+};
+class SoundEffect {
+public:
+	static SoundEffect* LoadOGG(std::string audioFP);
+	static void UnloadOGG(SoundEffect* sfx);
+	static void PlayOGG(SoundEffect* sfx);
+	static void LoadSFX();
+	static void UnloadSFX();
+protected:
+	SoundEffect(Mix_Chunk* chunk) {
+		this->ogg = chunk;
+	}
+	Mix_Chunk* ogg;
+};
+namespace SFX {
+	extern SoundEffect* ThrowKnife;
+}
