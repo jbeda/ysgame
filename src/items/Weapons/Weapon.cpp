@@ -3,7 +3,13 @@
 #include "../../Player.hpp"
 #include "../../util/debugging/notif.h"
 #include "../../sword/RapidKnife.hpp"
+#include "../../sword/HomingKnife.hpp"
 #define plr gGame->getPlr()
+template <typename KnifeType> void ThrowKnife() {
+	Sword* s = new KnifeType();
+	gGame->addObject(s);
+	s->Swing();
+}
 Weapon::Weapon(PlayerEffect effect) : GameObject(NULL, 0, 0, EItem) {
 	this->effect = effect;
 	switch (this->effect) {
@@ -37,14 +43,10 @@ bool Weapon::Use() {
 			}
 		break;
 	case PlayerEffect::HomingKnife:
-		OoO();
+		ThrowKnife<_HomingKnife>();
 		break;
 	case PlayerEffect::RapidThrow:
-	{
-		Sword* x = new RapidKnife();
-		gGame->addObject(x);
-		x->Swing();
-	}
+		ThrowKnife<RapidKnife>();
 		break;
 	case PlayerEffect::Wiper:
 		for (auto& o : gGame->getObjectList())

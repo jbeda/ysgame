@@ -166,6 +166,7 @@
     <ClInclude Include="src\Game.hpp" />
     <ClInclude Include="src\Map.hpp" />
     <ClInclude Include="src\PyxelMap.hpp" />
+    <ClInclude Include="src\sword\HomingKnife.hpp" />
     <ClInclude Include="src\sword\RapidKnife.hpp" />
     <ClInclude Include="src\TextureManager.hpp" />
     <ClInclude Include="src\ui\Form.hpp" />
