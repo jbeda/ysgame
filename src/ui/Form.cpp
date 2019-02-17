@@ -15,9 +15,9 @@ void UIForm::Render() {
 		SDL_RenderFillRect(gGame->renderer, &this->pos);
 	}
 }
-Widget::Widget(UIForm* parent, int pixRelativeX, int pixRelativeY, int pixW, int pixH, WidgetType type, std::string text, TTF_Font* font, YColor c) : GameObject(NULL, parent->getPixX() + pixRelativeX, parent->getPixY() + pixRelativeY, EUI) {
+Widget::Widget(UIForm* parent, int pixRelativeX, int pixRelativeY, int pixH, WidgetType type, std::string text, TTF_Font* font, YColor c) : GameObject(NULL, parent->getPixX() + pixRelativeX, parent->getPixY() + pixRelativeY, EUI) {
 	this->activated = false;
-	this->destRect.w = pixW;
+	this->destRect.w = pixH/2 * (std::strlen(text.c_str()) - 1);
 	this->destRect.h = pixH;
 	this->parent = parent;
 	this->type = type;
@@ -35,5 +35,5 @@ Widget::~Widget() {
 	SDL_DestroyTexture(this->tText);
 	gWidgetIDs.remove(this);
 }
-TTF_Font* Widget::Arial = NULL;
+TTF_Font* Widget::Consolas = NULL;
 std::list<Widget*> gWidgetIDs;

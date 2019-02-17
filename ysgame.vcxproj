@@ -141,6 +141,7 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\PyxelMap.cpp" />
+    <ClCompile Include="src\sound\Sound.cpp" />
     <ClCompile Include="src\TextureManager.cpp" />
     <ClCompile Include="src\ui\Form.cpp" />
     <ClCompile Include="src\util\debugging\notif.c" />
@@ -166,6 +167,7 @@
     <ClInclude Include="src\Game.hpp" />
     <ClInclude Include="src\Map.hpp" />
     <ClInclude Include="src\PyxelMap.hpp" />
+    <ClInclude Include="src\sound\Sound.hpp" />
     <ClInclude Include="src\sword\HomingKnife.hpp" />
     <ClInclude Include="src\sword\RapidKnife.hpp" />
     <ClInclude Include="src\TextureManager.hpp" />

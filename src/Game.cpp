@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <SDL_mixer.h>
+#include "sound/Sound.hpp"
 #include "ui/Form.hpp"
 #include "GameObject.hpp"
 #include "Enemy.hpp"
@@ -12,6 +14,8 @@
 #include "input/Controller.hpp"
 #include "input/XBOXController.hpp"
 #include "items/Item.hpp"
+
+Mix_Music* testmusic = NULL;
 
 YColor barrier = { 0, 0, 0, 0 };
 
@@ -39,11 +43,17 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 		printf("SDL_ttf could not initialize! TTF_Init Error: %s\n", TTF_GetError());
 		return CODE_RED;
 	}
-	Widget::Arial = TTF_OpenFont("assets/arial.ttf", 12);
-	if (Widget::Arial == NULL) {
+	Widget::Consolas = TTF_OpenFont("C:\\Windows\\Fonts\\Consola.ttf", 12);
+	if (Widget::Consolas == NULL) {
 		printf("Could not load Arial font! TTF_OpenFont Error: %s\n", TTF_GetError());
 		return CODE_RED;
 	}
+	int mixerFlags = MIX_INIT_MP3 | MIX_INIT_OGG;
+	if (Mix_Init(mixerFlags) != mixerFlags) {
+		printf("SDL_mixer could not initialize! Mix_Init Error: %s\n", Mix_GetError());
+		return CODE_RED;
+	}
+	Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 640);
 	input = new InputManager();
 	input->init();
 
@@ -71,6 +81,8 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 	this->addObject(new RapidThrow(4, 4));
 	this->addObject(new HomingKnife(6, 4));
 	// }
+	testmusic = LoadMP3("assets/3x_Osc_only.mp3");
+	PlayMP3(testmusic, -1);
 	return CODE_GREEN;
 }
 
@@ -105,12 +117,15 @@ void Game::addObject(GameObject * obj) {
 }
 
 void Game::clean() {
-	TTF_CloseFont(Widget::Arial);
+	TTF_CloseFont(Widget::Consolas);
 	delete input;
 	delete map;
-
+	StopMP3();
+	UnloadMP3(testmusic);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(wndw);
+	Mix_CloseAudio();
+	Mix_Quit();
 	TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();

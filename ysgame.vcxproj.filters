@@ -90,6 +90,9 @@
     <ClCompile Include="third_party\kiss_sdl\kiss_widgets.c">
       <Filter>Source Files\KISS</Filter>
     </ClCompile>
+    <ClCompile Include="src\sound\Sound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Vector2D.hpp">
@@ -288,6 +291,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\sword\HomingKnife.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sound\Sound.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

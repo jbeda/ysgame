@@ -12,12 +12,12 @@ public:
 	Item(std::string name, const char* itemImage, int x, int y, PlayerEffect effect) : GameObject(itemImage, x, y, EItem) { 
 		this->effect = new Weapon(effect);
 		YColor fc = { 255,255,255,255 };
-		this->form = new UIForm(x, y - TILE2PIX(2.5), TILE2PIX(5), TILE2PIX(2.5), fc);
+		this->form = new UIForm(x, y - TILE2PIX(2.5), TILE2PIX(1) + 24 * (std::strlen(name.c_str()) - 1), TILE2PIX(2.5), fc);
 		YColor tc = { 0,0,0,255 };
-		Widget* w1 = new Widget(this->form, 10, 10, 64, 48, WidgetType::WLabel, name, Widget::Arial, tc);
+		Widget* w1 = new Widget(this->form, 10, 10, 48, WidgetType::WLabel, name, Widget::Consolas, tc);
 		char uses[100];
 		itoa(this->effect->UsesLeft(), uses, 10);
-		Widget* w2 = new Widget(this->form, 10, 42, 16, 8, WidgetType::WLabel, (std::string("Uses: ") + std::string(uses)), Widget::Arial, tc);
+		Widget* w2 = new Widget(this->form, 10, 50, 16, WidgetType::WLabel, (std::string("Uses: ") + std::string(uses)), Widget::Consolas, tc);
 		gGame->addObject(w1);
 		gGame->addObject(w2);
 		gGame->addObject(this->form);

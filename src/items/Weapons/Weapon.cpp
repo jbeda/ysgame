@@ -20,7 +20,7 @@ Weapon::Weapon(PlayerEffect effect) : GameObject(NULL, 0, 0, EItem) {
 		this->maxuses = 5;
 		break;
 	case PlayerEffect::RapidThrow:
-		this->maxuses = 19;
+		this->maxuses = 20;
 		break;
 	case PlayerEffect::Wiper:
 		this->maxuses = 1;

@@ -13,13 +13,13 @@ extern std::list<Widget*> gWidgetIDs;
 class UIForm;
 class Widget : public GameObject {
 public:
-	Widget(UIForm* parent, int pixRelativeX, int pixRelativeY, int pixW, int pixH, WidgetType type, std::string text, TTF_Font* font, YColor c);
+	Widget(UIForm* parent, int pixRelativeX, int pixRelativeY, int pixH, WidgetType type, std::string text, TTF_Font* font, YColor c);
 	~Widget();
 	void Render();
 	void Activate() { this->activated = true; }
 	void Deactivate() { this->activated = false; }
 	UIForm* getParent() { return this->parent; }
-	static TTF_Font* Arial;
+	static TTF_Font* Consolas;
 protected:
 	WidgetType type;
 	std::string text;

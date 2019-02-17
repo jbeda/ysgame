@@ -15,7 +15,7 @@ public:
 	PlayerEffect getEnumeration() { return this->effect; }
 	bool Use();
 	int UsesLeft() {
-		return this->uses;
+		return this->maxuses - this->uses;
 	}
 private:
 	PlayerEffect effect = PlayerEffect::None;
