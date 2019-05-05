@@ -230,6 +230,7 @@
   <ItemGroup>
     <None Include="..\..\Downloads\map.json" />
     <None Include="assets\lvl1.json" />
+    <None Include="assets\sfx\throwknife.ogg" />
     <None Include="maps\map.json" />
     <None Include="maps\README.md" />
     <None Include="packages.config" />
