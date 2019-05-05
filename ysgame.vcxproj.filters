@@ -16,9 +16,6 @@
     <Filter Include="Header Files\Json">
       <UniqueIdentifier>{1fab69b1-ef47-4697-a9dc-a0ca1bfc8c4f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\KISS">
-      <UniqueIdentifier>{d4430a5a-6db6-4333-b7c2-c108a099886b}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -77,18 +74,6 @@
     </ClCompile>
     <ClCompile Include="src\ui\Form.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="third_party\kiss_sdl\kiss_draw.c">
-      <Filter>Source Files\KISS</Filter>
-    </ClCompile>
-    <ClCompile Include="third_party\kiss_sdl\kiss_general.c">
-      <Filter>Source Files\KISS</Filter>
-    </ClCompile>
-    <ClCompile Include="third_party\kiss_sdl\kiss_posix.c">
-      <Filter>Source Files\KISS</Filter>
-    </ClCompile>
-    <ClCompile Include="third_party\kiss_sdl\kiss_widgets.c">
-      <Filter>Source Files\KISS</Filter>
     </ClCompile>
     <ClCompile Include="src\sound\Sound.cpp">
       <Filter>Source Files</Filter>
@@ -307,6 +292,33 @@
     <Image Include="assets\lvl1.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="assets\dirt.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Grenade.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Homing.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\stone.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\stonebg.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Sword.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\water.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Wiper.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\lvl1.json" />
@@ -317,5 +329,11 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="AUTHORS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\arial.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="assets\tutorialmusic.mp3" />
   </ItemGroup>
 </Project>

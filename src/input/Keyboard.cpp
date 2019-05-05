@@ -35,5 +35,5 @@ void GetKeyboardInput(KeyboardInput& ki) {
 
 	// Handle keyboard actions
 	ki.attack = KeyBoardButtonPressed(SDL_SCANCODE_R);
-	ki.pickup = KeyBoardButtonPressed(SDL_SCANCODE_C);
+	ki.pickup = KeyBoardButtonPressed(SDL_SCANCODE_E);
 }

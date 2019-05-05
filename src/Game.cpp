@@ -26,7 +26,9 @@ void Game::SetRendererColor(YColor color) {
 }
 
 ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullscreen) {
+#ifdef DEBUGENABLED
 	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
+#endif
 	if (SDL_Init(SDL_INIT_EVERYTHING & ~(SDL_INIT_HAPTIC | SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER)) != 0)
 	{
 		printf("SDL_Init could not initialize! Error: %s\n", SDL_GetError());
@@ -82,7 +84,7 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 	this->addObject(new HomingKnife(6, 4));
 	// }
 	SoundEffect::LoadSFX();
-	lvl1music = Music::LoadMP3("assets/3x_Osc_only.mp3");
+	lvl1music = Music::LoadMP3("assets/tutorialmusic.mp3");
 	Music::PlayMP3(lvl1music, -1);
 	return CODE_GREEN;
 }

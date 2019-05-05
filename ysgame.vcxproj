@@ -22,28 +22,28 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{25A00A51-0255-45D1-9154-87A0A4F8AF41}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -117,6 +117,7 @@
     </Link>
     <ClCompile>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUGENABLED</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -149,10 +150,6 @@
     <ClCompile Include="src\Vector2D.cpp" />
     <ClCompile Include="src\input\XBOXController.cpp" />
     <ClCompile Include="src\sword\Sword.cpp" />
-    <ClCompile Include="third_party\kiss_sdl\kiss_draw.c" />
-    <ClCompile Include="third_party\kiss_sdl\kiss_general.c" />
-    <ClCompile Include="third_party\kiss_sdl\kiss_posix.c" />
-    <ClCompile Include="third_party\kiss_sdl\kiss_widgets.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\input\InputManager.hpp" />
@@ -224,9 +221,18 @@
     <ClInclude Include="src\input\XBOXController.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="assets\dirt.png" />
     <Image Include="assets\Enemy.png" />
+    <Image Include="assets\grass.png" />
+    <Image Include="assets\Grenade.png" />
+    <Image Include="assets\Homing.png" />
     <Image Include="assets\lvl1.png" />
     <Image Include="assets\Player.png" />
+    <Image Include="assets\stone.png" />
+    <Image Include="assets\stonebg.png" />
+    <Image Include="assets\Sword.png" />
+    <Image Include="assets\water.png" />
+    <Image Include="assets\Wiper.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Downloads\map.json" />
@@ -237,6 +243,12 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="AUTHORS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\arial.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="assets\tutorialmusic.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
