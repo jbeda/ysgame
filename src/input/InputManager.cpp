@@ -53,7 +53,7 @@ Move InputManager::GetMove()
 
 	if (js.y == VerticalValue::Down || ki.y == KBDirectionY::DOWN) {
 		if (ret.y != YMove::YNone) {
-			// If both up and right are pressed, no move
+			// If both up and down are pressed, no move
 			ret.y = YMove::YNone;
 		} else {
 			ret.y = YMove::YDown;

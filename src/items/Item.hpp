@@ -34,7 +34,7 @@ protected:
 	int uses = 0;
 	UIForm* form = NULL;
 };
-#define Grenade(x, y) Item("Grenade", "Grenade.png", TILE2PIX(x) + 1, TILE2PIX(y) + 1, PlayerEffect::Grenade)
-#define Wiper(x, y) Item("Wiper", "Wiper.png", TILE2PIX(x) + 1, TILE2PIX(y) + 1, PlayerEffect::Wiper)
-#define HomingKnife(x, y) Item("Homing Knife", "Homing.png", TILE2PIX(x) + 1, TILE2PIX(y) + 1, PlayerEffect::HomingKnife)
-#define RapidThrow(x, y) Item("Rapid Throw", "RapidThrow.png", TILE2PIX(x) + 1, TILE2PIX(y) + 1, PlayerEffect::RapidThrow)
+#define GrenadeInit(x, y) Item("Grenade", "Grenade.png", TILE2PIX(x) + 1, TILE2PIX(y) + 1, PlayerEffect::Grenade)
+#define WiperInit(x, y) Item("Wiper", "Wiper.png", TILE2PIX(x) + 1, TILE2PIX(y) + 1, PlayerEffect::Wiper)
+#define HomingKnifeInit(x, y) Item("Homing Knife", "Homing.png", TILE2PIX(x) + 1, TILE2PIX(y) + 1, PlayerEffect::HomingKnife)
+#define RapidThrowInit(x, y) Item("Rapid Throw", "RapidThrow.png", TILE2PIX(x) + 1, TILE2PIX(y) + 1, PlayerEffect::RapidThrow)

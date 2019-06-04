@@ -48,17 +48,17 @@ SimpleGameObject::~SimpleGameObject() {
 bool SimpleGameObject::Collided(Plane p, SimpleGameObject& obj) {
 	switch (p) {
 	case Plane::X:
-		return IsInRange(this->destRect.x, obj.getLocation()->x, COLLISION_RANGE);
+		return IsInRange(this->destRect.x, obj.getLocation().x, COLLISION_RANGE);
 		break;
 	case Plane::Y:
-		return IsInRange(this->destRect.y, obj.getLocation()->y, COLLISION_RANGE);
+		return IsInRange(this->destRect.y, obj.getLocation().y, COLLISION_RANGE);
 		break;
 	}
 	return FALSE;
 }
 bool SimpleGameObject::Radius(SimpleGameObject& obj, int radius) {
-	bool x = IsInRange(this->destRect.x, obj.getLocation()->x, radius);
-	bool y = IsInRange(this->destRect.y, obj.getLocation()->y, radius);
+	bool x = IsInRange(this->destRect.x, obj.getLocation().x, radius);
+	bool y = IsInRange(this->destRect.y, obj.getLocation().y, radius);
 	return x && y;
 }
 int SimpleGameObject::latestId = 0;

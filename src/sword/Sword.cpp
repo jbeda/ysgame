@@ -18,11 +18,11 @@ void Sword::Update() {
 		this->destRect.y += 0.5;
 	}
 	else {
-		this->destRect.y = gGame->getPlr()->getLocation()->y + 5;
+		this->destRect.y = gGame->getPlr()->getLocation().y + 5;
 		if (gGame->getPlr()->getRenderFlip() == SDL_FLIP_NONE)
-			this->destRect.x = gGame->getPlr()->getLocation()->x + 20;
+			this->destRect.x = gGame->getPlr()->getLocation().x + 20;
 		else
-			this->destRect.x = gGame->getPlr()->getLocation()->x - 7;
+			this->destRect.x = gGame->getPlr()->getLocation().x - 7;
 	}
 
 	if (gGame->getInput()->GetAttack()) {

@@ -47,7 +47,7 @@ bool Weapon::Use() {
 		}
 		break;
 	case PlayerEffect::HomingKnife:
-		ThrowKnife<_HomingKnife>();
+		ThrowKnife<HomingKnife>();
 		break;
 	case PlayerEffect::RapidThrow:
 		ThrowKnife<RapidKnife>();

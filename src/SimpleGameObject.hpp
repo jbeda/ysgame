@@ -3,6 +3,9 @@
 
 #include <SDL.h>
 #include "GameObject.hpp"
+#include "Vector2D.hpp"
+#include <string>
+#include "util/debugging/notif.h"
 
 enum class Plane {
 	X,
@@ -14,7 +17,7 @@ public:
 	SimpleGameObject(const char* texFile, int x, int y, EntityType type, int maxhp = 10);
 	virtual ~SimpleGameObject();
 
-	SDL_Rect* getLocation() { return &(this->destRect); }
+	Vector2f getLocation() { return Vector2f(destRect.x, destRect.y); }
 
 	SDL_Texture* getImage() { return this->img; }
 
@@ -26,7 +29,12 @@ public:
 
 	void Rotate(double rotation) { this->rotation += rotation; }
 	int getHP() { return this->hp; }
-	void hurt(int dmg) { this->hp -= dmg; }
+	void hurt(int dmg) {
+		this->hp -= dmg;
+		char buf[128];
+		_itoa(this->id, buf, 10);
+		DebugMessage(("i got hurt " + std::string(buf)).c_str());
+	}
 
 	bool Collided(Plane p, SimpleGameObject& obj);
 	bool Radius(SimpleGameObject& obj, int radius);

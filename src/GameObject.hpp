@@ -1,5 +1,6 @@
 #pragma once
 
+
 enum EntityType {
 	EPlayer,
 	EEnemy,

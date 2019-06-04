@@ -80,8 +80,8 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 	this->addObject(this->plr);
 	this->addObject(new Enemy(50, 50));
 	// test items {
-	this->addObject(new RapidThrow(4, 4));
-	this->addObject(new HomingKnife(6, 4));
+	this->addObject(new RapidThrowInit(4, 4));
+	this->addObject(new HomingKnifeInit(6, 4));
 	// }
 	SoundEffect::LoadSFX();
 	lvl1music = Music::LoadMP3("assets/tutorialmusic.mp3");
