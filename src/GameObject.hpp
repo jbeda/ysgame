@@ -6,7 +6,9 @@ enum EntityType {
 	EEnemy,
 	EMap,
 	EItem,
-	EUI
+	EUI,
+	ECompositeObject,
+	EParticleSystem,
 };
 
 class Enemy;
@@ -24,7 +26,7 @@ public:
 
 	Enemy* AsEnemy();
 
-private:
+protected:
 	EntityType type;
 };
 

@@ -128,12 +128,14 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\CompositeObject.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\input\InputManager.cpp" />
     <ClCompile Include="src\Enemy.cpp" />
     <ClCompile Include="src\items\Weapons\Weapon.cpp" />
     <ClCompile Include="src\items\Item.cpp" />
     <ClCompile Include="src\input\Keyboard.cpp" />
+    <ClCompile Include="src\ParticleSystem.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\input\Controller.cpp" />
     <ClCompile Include="src\ArrayMap.cpp" />
@@ -151,12 +153,14 @@
     <ClCompile Include="src\sword\Sword.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\CompositeObject.h" />
     <ClInclude Include="src\GameObject.hpp" />
     <ClInclude Include="src\input\InputManager.hpp" />
     <ClInclude Include="src\Enemy.hpp" />
     <ClInclude Include="src\items\Weapons\Weapon.hpp" />
     <ClInclude Include="src\items\Item.hpp" />
     <ClInclude Include="src\input\Keyboard.hpp" />
+    <ClInclude Include="src\ParticleSystem.h" />
     <ClInclude Include="src\Player.hpp" />
     <ClInclude Include="src\input\Controller.hpp" />
     <ClInclude Include="src\ArrayMap.hpp" />
