@@ -8,6 +8,8 @@ enum EntityType {
 	EUI
 };
 
+class Enemy;
+
 class GameObject
 {
 public:
@@ -18,6 +20,8 @@ public:
 	virtual void Render() {}
 	virtual bool IsDead() { return false; }
 	EntityType getObjType() { return this->type; }
+
+	Enemy* AsEnemy();
 
 private:
 	EntityType type;

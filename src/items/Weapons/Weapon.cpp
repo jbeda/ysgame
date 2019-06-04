@@ -34,16 +34,17 @@ bool Weapon::Use() {
 	DebugMessage(("used other weapon: " + EffectToStr(this->getEnumeration())).c_str());
 	switch (this->getEnumeration()) {
 	case PlayerEffect::Grenade:
-		for (auto& o : gGame->getObjectList())
-			if (o->getObjType() == EEnemy) {
-				auto enemy = dynamic_cast<Enemy*>(o.get());
-				if (plr->Radius(*enemy, 1))
-					enemy->hurt(3);
-				else if (plr->Radius(*enemy, 2))
-					enemy->hurt(2);
-				else if (plr->Radius(*enemy, 3))
-					enemy->hurt(1);
+		for (auto& o : gGame->getObjectList()) {
+			auto e = o->AsEnemy();
+			if (e != NULL) {
+				if (plr->Radius(*e, 1))
+					e->hurt(3);
+				else if (plr->Radius(*e, 2))
+					e->hurt(2);
+				else if (plr->Radius(*e, 3))
+					e->hurt(1);
 			}
+		}
 		break;
 	case PlayerEffect::HomingKnife:
 		ThrowKnife<_HomingKnife>();
@@ -53,9 +54,8 @@ bool Weapon::Use() {
 		break;
 	case PlayerEffect::Wiper:
 		for (auto& o : gGame->getObjectList()) {
-			if (o->getObjType() == EEnemy) {
-				dynamic_cast<Enemy*>(o.get())->Kill();
-			}
+			Enemy* enemy = o->AsEnemy();
+			if (enemy) { enemy->Kill(); }
 		}
 		break;
 	}
