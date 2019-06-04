@@ -5,7 +5,7 @@
 #include <vector>
 #include "util/debugging/notif.h"
 #include "util/include.h"
-#include "GameObject.hpp"
+#include "SimpleGameObject.hpp"
 #include "Game.hpp"
 #include "Player.hpp"
 

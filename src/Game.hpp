@@ -2,7 +2,7 @@
 #define GAME_HPP
 
 #include <SDL.h>
-#include "GameObject.hpp"
+#include "SimpleGameObject.hpp"
 #include "input/InputManager.hpp"
 
 #include <list>
@@ -10,7 +10,7 @@
 
 // DEFINITIONS
 typedef Uint8 YColor[4];
-class GameObject;
+class SimpleGameObject;
 class Player;
 class Controller;
 class Map;
@@ -44,11 +44,11 @@ public:
 	void SetRendererColor(YColor color);
 	Player* getPlr() { return plr; }
 	InputManager* getInput() { return input; }
-	void addObject(GameObject* obj);
-	std::list<std::unique_ptr<GameObject>>& getObjectList() { return this->objs; }
+	void addObject(SimpleGameObject* obj);
+	std::list<std::unique_ptr<SimpleGameObject>>& getObjectList() { return this->objs; }
 	Map* getMap() { return this->map; }
 private:
-	std::list<std::unique_ptr<GameObject>> objs;
+	std::list<std::unique_ptr<SimpleGameObject>> objs;
 	Player *plr = NULL;
 	Map* map = NULL;
 	SDL_Window* wndw = NULL;

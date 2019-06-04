@@ -6,7 +6,7 @@
 #include <SDL_mixer.h>
 #include "sound/Sound.hpp"
 #include "ui/Form.hpp"
-#include "GameObject.hpp"
+#include "SimpleGameObject.hpp"
 #include "Enemy.hpp"
 #include "Player.hpp"
 #include "PyxelMap.hpp"
@@ -103,7 +103,7 @@ void Game::render() {
 	map->DrawMap();
 
 	for (auto& o : this->objs) {
-		if (!o->dead) {
+		if (!o->IsDead()) {
 			o->Render();
 		}
 	}
@@ -112,11 +112,11 @@ void Game::render() {
 }
 
 void Game::garbageCollect() {
-	this->objs.remove_if([](auto& o) { return o->dead; });
+	this->objs.remove_if([](auto& o) { return o->IsDead(); });
 }
 
-void Game::addObject(GameObject * obj) {
-	this->objs.push_front(std::unique_ptr<GameObject>(obj));
+void Game::addObject(SimpleGameObject * obj) {
+	this->objs.push_front(std::unique_ptr<SimpleGameObject>(obj));
 }
 
 void Game::clean() {

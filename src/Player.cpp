@@ -33,7 +33,7 @@ void Player::Update() {
 }
 
 void Player::Render() {
-	GameObject::Render();
+	SimpleGameObject::Render();
 	this->sw->Render();
 }
 

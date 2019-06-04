@@ -1,15 +1,15 @@
 #pragma once
 #include "../Game.hpp"
-#include "../GameObject.hpp"
+#include "../SimpleGameObject.hpp"
 #include "../util/include.h"
 #include "weapons/Weapon.hpp"
 #include "../ui/Form.hpp"
 #include "../Map.hpp"
 #include <cstdlib>
 
-class Item : public GameObject {
+class Item : public SimpleGameObject {
 public:
-	Item(std::string name, const char* itemImage, int x, int y, PlayerEffect effect) : GameObject(itemImage, x, y, EItem) { 
+	Item(std::string name, const char* itemImage, int x, int y, PlayerEffect effect) : SimpleGameObject(itemImage, x, y, EItem) { 
 		this->effect = new Weapon(effect);
 		YColor fc = { 255,255,255,255 };
 		this->form = new UIForm(x, y - TILE2PIX(2.5), TILE2PIX(1) + 24 * (std::strlen(name.c_str()) - 1), TILE2PIX(2.5), fc);

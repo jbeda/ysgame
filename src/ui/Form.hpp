@@ -1,6 +1,6 @@
 #pragma once
 #include "../util/include.h"
-#include "../GameObject.hpp"
+#include "../SimpleGameObject.hpp"
 #include "../Game.hpp"
 #include <SDL_ttf.h>
 enum WidgetType {
@@ -11,7 +11,7 @@ enum WidgetType {
 class Widget;
 extern std::list<Widget*> gWidgetIDs;
 class UIForm;
-class Widget : public GameObject {
+class Widget : public SimpleGameObject {
 public:
 	Widget(UIForm* parent, int pixRelativeX, int pixRelativeY, int pixH, WidgetType type, std::string text, TTF_Font* font, YColor c);
 	~Widget();
@@ -27,7 +27,7 @@ protected:
 	bool activated;
 	SDL_Texture* tText;
 };
-class UIForm : public GameObject {
+class UIForm : public SimpleGameObject {
 public:
 	UIForm(int pixX, int pixY, int pixW, int pixH, YColor c);
 	void Activate() {

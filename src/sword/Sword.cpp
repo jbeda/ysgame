@@ -5,7 +5,6 @@
 
 void Sword::Update() {
 	if (rotation == 135 || rotation == -135) {
-		DebugMessage("135 deg now resetting");
 		this->ResetSwing();
 	}
 	if (this->swinging) {

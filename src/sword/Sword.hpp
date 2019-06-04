@@ -1,12 +1,12 @@
 #pragma once
-#include "../GameObject.hpp"
+#include "../SimpleGameObject.hpp"
 #include "../items/Weapons/Weapon.hpp"
 #include "../sound/Sound.hpp"
 class Sword :
-	public GameObject
+	public SimpleGameObject
 {
 public:
-	Sword() : GameObject("Sword.png", 0, 0, EItem) { this->rotation = 0; }
+	Sword() : SimpleGameObject("Sword.png", 0, 0, EItem) { this->rotation = 0; }
 	virtual void Update();
 	void Swing() { this->swinging = true; SoundEffect::PlayOGG(SFX::ThrowKnife); }
 	void ResetSwing();

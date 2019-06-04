@@ -1,6 +1,6 @@
 #include "Form.hpp"
 #include "../util/debugging/notif.h"
-UIForm::UIForm(int x, int y, int w, int h, YColor c) : GameObject(NULL, x, y, EUI) {
+UIForm::UIForm(int x, int y, int w, int h, YColor c) : SimpleGameObject(NULL, x, y, EUI) {
 	this->activated = false;
 	this->pos.x = x;
 	this->pos.y = y;
@@ -15,7 +15,7 @@ void UIForm::Render() {
 		SDL_RenderFillRect(gGame->renderer, &this->pos);
 	}
 }
-Widget::Widget(UIForm* parent, int pixRelativeX, int pixRelativeY, int pixH, WidgetType type, std::string text, TTF_Font* font, YColor c) : GameObject(NULL, parent->getPixX() + pixRelativeX, parent->getPixY() + pixRelativeY, EUI) {
+Widget::Widget(UIForm* parent, int pixRelativeX, int pixRelativeY, int pixH, WidgetType type, std::string text, TTF_Font* font, YColor c) : SimpleGameObject(NULL, parent->getPixX() + pixRelativeX, parent->getPixY() + pixRelativeY, EUI) {
 	this->activated = false;
 	this->destRect.w = pixH/2 * (std::strlen(text.c_str()) - 1);
 	this->destRect.h = pixH;

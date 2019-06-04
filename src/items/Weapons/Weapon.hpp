@@ -1,5 +1,5 @@
 #pragma once
-#include "../../GameObject.hpp"
+#include "../../SimpleGameObject.hpp"
 #include "../../util/include.h"
 enum class PlayerEffect {
 	Wiper,
@@ -8,7 +8,7 @@ enum class PlayerEffect {
 	RapidThrow,
 	None
 };
-class Weapon : GameObject
+class Weapon : SimpleGameObject
 {
 public:
 	Weapon(PlayerEffect effect);

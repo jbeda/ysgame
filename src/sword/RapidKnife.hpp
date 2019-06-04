@@ -14,7 +14,6 @@ public:
 	}
 	void Update() {
 		if (rotation == 135 || rotation == -135) {
-			DebugMessage("rapidthrow knife 135 deg now resetting");
 			this->ResetSwing();
 			this->dead = true;
 		}

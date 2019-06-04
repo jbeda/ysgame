@@ -1,12 +1,12 @@
 #pragma once
-#include "GameObject.hpp"
+#include "SimpleGameObject.hpp"
 #include "sword/Sword.hpp"
 #include "items/Item.hpp"
 class Player :
-	public GameObject
+	public SimpleGameObject
 {
 public:
-	Player() : GameObject("Player.png", 0, 0, EPlayer) { this->sw = new Sword(); }
+	Player() : SimpleGameObject("Player.png", 0, 0, EPlayer) { this->sw = new Sword(); }
 
 	void Update();
 	void Render();

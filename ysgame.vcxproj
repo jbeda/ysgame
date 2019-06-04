@@ -69,9 +69,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);third_party</IncludePath>
-  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);third_party</IncludePath>
   </PropertyGroup>
@@ -82,7 +80,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>Z:\C++\ysgame\third_party\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)third_party\;$(ProjectDir)src\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -116,8 +114,8 @@
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <ClCompile>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUGENABLED</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)third_party\;$(ProjectDir)src\</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -130,6 +128,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\input\InputManager.cpp" />
     <ClCompile Include="src\Enemy.cpp" />
     <ClCompile Include="src\items\Weapons\Weapon.cpp" />
@@ -138,7 +137,7 @@
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\input\Controller.cpp" />
     <ClCompile Include="src\ArrayMap.cpp" />
-    <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="src\SimpleGameObject.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\PyxelMap.cpp" />
@@ -152,6 +151,7 @@
     <ClCompile Include="src\sword\Sword.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\GameObject.hpp" />
     <ClInclude Include="src\input\InputManager.hpp" />
     <ClInclude Include="src\Enemy.hpp" />
     <ClInclude Include="src\items\Weapons\Weapon.hpp" />
@@ -160,7 +160,7 @@
     <ClInclude Include="src\Player.hpp" />
     <ClInclude Include="src\input\Controller.hpp" />
     <ClInclude Include="src\ArrayMap.hpp" />
-    <ClInclude Include="src\GameObject.hpp" />
+    <ClInclude Include="src\SimpleGameObject.hpp" />
     <ClInclude Include="src\Game.hpp" />
     <ClInclude Include="src\Map.hpp" />
     <ClInclude Include="src\PyxelMap.hpp" />

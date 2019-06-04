@@ -1,16 +1,18 @@
 #include "Weapon.hpp"
-#include "../../Game.hpp"
-#include "../../Player.hpp"
-#include "../../util/debugging/notif.h"
-#include "../../sword/RapidKnife.hpp"
-#include "../../sword/HomingKnife.hpp"
+#include "Game.hpp"
+#include "Player.hpp"
+#include "util/debugging/notif.h"
+#include "sword/RapidKnife.hpp"
+#include "sword/HomingKnife.hpp"
+#include "Enemy.hpp"
+
 #define plr gGame->getPlr()
 template <typename KnifeType> void ThrowKnife() {
 	Sword* s = new KnifeType();
 	gGame->addObject(s);
 	s->Swing();
 }
-Weapon::Weapon(PlayerEffect effect) : GameObject(NULL, 0, 0, EItem) {
+Weapon::Weapon(PlayerEffect effect) : SimpleGameObject(NULL, 0, 0, EItem) {
 	this->effect = effect;
 	switch (this->effect) {
 	case PlayerEffect::Grenade:
@@ -49,9 +51,11 @@ bool Weapon::Use() {
 		ThrowKnife<RapidKnife>();
 		break;
 	case PlayerEffect::Wiper:
-		for (auto& o : gGame->getObjectList())
-			if (o->getObjType() == EEnemy)
-				o->dead = true;
+		for (auto& o : gGame->getObjectList()) {
+			if (o->getObjType() == EEnemy) {
+				dynamic_cast<Enemy*>(o.get())->Kill();
+			}
+		}
 		break;
 	}
 	return (this->uses >= this->maxuses);
