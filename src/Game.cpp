@@ -115,8 +115,8 @@ void Game::garbageCollect() {
 	this->objs.remove_if([](auto& o) { return o->IsDead(); });
 }
 
-void Game::addObject(SimpleGameObject * obj) {
-	this->objs.push_front(std::unique_ptr<SimpleGameObject>(obj));
+void Game::addObject(GameObject * obj) {
+	this->objs.push_front(std::unique_ptr<GameObject>(obj));
 }
 
 void Game::clean() {

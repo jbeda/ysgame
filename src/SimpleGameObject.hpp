@@ -8,13 +8,7 @@ enum class Plane {
 	X,
 	Y
 };
-enum EntityType {
-	EPlayer,
-	EEnemy,
-	EMap,
-	EItem,
-	EUI
-};
+
 class SimpleGameObject : public GameObject  {
 public:
 	SimpleGameObject(const char* texFile, int x, int y, EntityType type, int maxhp = 10);
@@ -33,7 +27,7 @@ public:
 	void Rotate(double rotation) { this->rotation += rotation; }
 	int getHP() { return this->hp; }
 	void hurt(int dmg) { this->hp -= dmg; }
-	EntityType getObjType() { return this->type; }
+
 	bool Collided(Plane p, SimpleGameObject& obj);
 	bool Radius(SimpleGameObject& obj, int radius);
 	int getID() { return this->id; }
@@ -47,7 +41,6 @@ protected:
 	int id;
 	static int latestId;
 	SDL_RendererFlip currentFlip = SDL_FLIP_NONE;
-	EntityType type;
 	bool dead = false;
 };
 #endif

@@ -36,12 +36,13 @@ bool Weapon::Use() {
 	case PlayerEffect::Grenade:
 		for (auto& o : gGame->getObjectList())
 			if (o->getObjType() == EEnemy) {
-				if (plr->Radius(*o, 1))
-					o->hurt(3);
-				else if (plr->Radius(*o, 2))
-					o->hurt(2);
-				else if (plr->Radius(*o, 3))
-					o->hurt(1);
+				auto enemy = dynamic_cast<Enemy*>(o.get());
+				if (plr->Radius(*enemy, 1))
+					enemy->hurt(3);
+				else if (plr->Radius(*enemy, 2))
+					enemy->hurt(2);
+				else if (plr->Radius(*enemy, 3))
+					enemy->hurt(1);
 			}
 		break;
 	case PlayerEffect::HomingKnife:

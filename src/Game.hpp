@@ -44,11 +44,11 @@ public:
 	void SetRendererColor(YColor color);
 	Player* getPlr() { return plr; }
 	InputManager* getInput() { return input; }
-	void addObject(SimpleGameObject* obj);
-	std::list<std::unique_ptr<SimpleGameObject>>& getObjectList() { return this->objs; }
+	void addObject(GameObject* obj);
+	std::list<std::unique_ptr<GameObject>>& getObjectList() { return this->objs; }
 	Map* getMap() { return this->map; }
 private:
-	std::list<std::unique_ptr<SimpleGameObject>> objs;
+	std::list<std::unique_ptr<GameObject>> objs;
 	Player *plr = NULL;
 	Map* map = NULL;
 	SDL_Window* wndw = NULL;

@@ -4,8 +4,8 @@
 #include "Game.hpp"
 #include "util/numbers.h"
 
-SimpleGameObject::SimpleGameObject(const char* imgPath, int x, int y, EntityType type, int maxhp) {
-	this->type = type;
+SimpleGameObject::SimpleGameObject(const char* imgPath, int x, int y, EntityType type, int maxhp) 
+	: GameObject(type) {
 	this->id = latestId;
 	latestId++;
 
