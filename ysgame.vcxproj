@@ -153,14 +153,14 @@
     <ClCompile Include="src\sword\Sword.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\CompositeObject.h" />
+    <ClInclude Include="src\CompositeObject.hpp" />
     <ClInclude Include="src\GameObject.hpp" />
     <ClInclude Include="src\input\InputManager.hpp" />
     <ClInclude Include="src\Enemy.hpp" />
     <ClInclude Include="src\items\Weapons\Weapon.hpp" />
     <ClInclude Include="src\items\Item.hpp" />
     <ClInclude Include="src\input\Keyboard.hpp" />
-    <ClInclude Include="src\ParticleSystem.h" />
+    <ClInclude Include="src\ParticleSystem.hpp" />
     <ClInclude Include="src\Player.hpp" />
     <ClInclude Include="src\input\Controller.hpp" />
     <ClInclude Include="src\ArrayMap.hpp" />
