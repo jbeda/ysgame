@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include "SimpleGameObject.hpp"
 #include "input/InputManager.hpp"
+#include "YRenderer.hpp"
 
 #include <list>
 #include <memory>
@@ -40,7 +41,8 @@ public:
 	void render();
 	void garbageCollect();
 
-	SDL_Renderer* renderer = NULL;
+
+	YRenderer renderer;
 	void SetRendererColor(YColor color);
 	Player* getPlr() { return plr; }
 	InputManager* getInput() { return input; }

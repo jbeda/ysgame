@@ -12,7 +12,7 @@ void UIForm::Render() {
 	if (this->activated) {
 		YColor c = { this->c.r, this->c.g, this->c.b, this->c.a };
 		gGame->SetRendererColor(c);
-		SDL_RenderFillRect(gGame->renderer, &this->pos);
+		gGame->renderer.FillRect(&this->pos);
 	}
 }
 Widget::Widget(UIForm* parent, int pixRelativeX, int pixRelativeY, int pixH, WidgetType type, std::string text, TTF_Font* font, YColor c) : SimpleGameObject(NULL, parent->getPixX() + pixRelativeX, parent->getPixY() + pixRelativeY, EUI) {
@@ -23,13 +23,14 @@ Widget::Widget(UIForm* parent, int pixRelativeX, int pixRelativeY, int pixH, Wid
 	this->type = type;
 	SDL_Color co = {c[0],c[1],c[2],c[3]};
 	SDL_Surface* surf = TTF_RenderText_Solid(font, text.c_str(), co);
-	this->tText = SDL_CreateTextureFromSurface(gGame->renderer, surf);
+	this->tText = gGame->renderer.CreateTextureFromSurface(surf);
 	SDL_FreeSurface(surf);
 	gWidgetIDs.push_back(this);
 }
 void Widget::Render() {
-	if (this->activated)
-		SDL_RenderCopy(gGame->renderer, this->tText, NULL, &this->destRect);
+	if (this->activated) {
+		gGame->renderer.Copy(this->tText, NULL, &this->destRect);
+	}
 }
 Widget::~Widget() {
 	SDL_DestroyTexture(this->tText);

@@ -11,7 +11,7 @@ SDL_Texture* TextureManager::LoadTexture(const char* filename) {
 	if (tmpSurface == NULL) {
 		printf("Error loading image %s: %s\n", newFilename, IMG_GetError());
 	}
-	SDL_Texture* texture = SDL_CreateTextureFromSurface(gGame->renderer, tmpSurface);
+	SDL_Texture* texture = gGame->renderer.CreateTextureFromSurface(tmpSurface);
 	if (texture == NULL) {
 		printf("Error creating texture %s: %s\n", newFilename, SDL_GetError());
 	}
@@ -20,5 +20,5 @@ SDL_Texture* TextureManager::LoadTexture(const char* filename) {
 }
 int TextureManager::Draw(SDL_Texture *texture, SDL_Rect src, SDL_Rect dest,
 	double angle, SDL_RendererFlip flip) {
-	return SDL_RenderCopyEx(gGame->renderer, texture, &src, &dest, angle, NULL, flip);
+	return gGame->renderer.CopyEx(texture, &src, &dest, angle, NULL, flip);
 }

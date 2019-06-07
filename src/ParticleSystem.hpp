@@ -16,7 +16,7 @@ class ParticleSystem : public CompositeObject {
 public:
 	ParticleSystem(Vector2f pos, int lifetime, int decay);
 	virtual void Update();
-	virtual void Render();
+	virtual void Render() {}
 protected:
 	int lifetime, decay;
 };

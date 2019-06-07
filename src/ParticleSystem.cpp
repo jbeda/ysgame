@@ -8,7 +8,7 @@ void ParticleSystem::Update() {
 }
 Particle::Particle(SDL_Color color, int lifetime, int decay) : CompositeChild(EParticleSystem), lifetime(lifetime), color(color), decay(decay) { }
 void Particle::Update() {
-	this->color = { color.r, color.g, color.b, this->lifetime };
+	this->color = { color.r, color.g, color.b, static_cast<Uint8>(this->lifetime) };
 	this->lifetime -= this->decay;
 }
 void Particle::Render(Vector2f pos) {

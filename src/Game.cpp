@@ -22,7 +22,7 @@ YColor barrier = { 0, 0, 0, 0 };
 Game* gGame = NULL;
 
 void Game::SetRendererColor(YColor color) {
-	SDL_SetRenderDrawColor(this->renderer, color[0], color[1], color[2], color[3]);
+	this->renderer.SetDrawColor(color[0], color[1], color[2], color[3]);
 }
 
 ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullscreen) {
@@ -69,11 +69,12 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 	SDL_Surface* tempsurf = IMG_Load("assets\\Player.png");
 	SDL_SetWindowIcon(wndw, tempsurf);
 	SDL_FreeSurface(tempsurf);
-	renderer = SDL_CreateRenderer(wndw, -1, SDL_RENDERER_PRESENTVSYNC);
-	if (renderer == NULL) {
+	auto r = SDL_CreateRenderer(wndw, -1, SDL_RENDERER_PRESENTVSYNC);
+	if (r == NULL) {
 		SDL_DestroyWindow(wndw);
 		return CODE_RED;
 	}
+	renderer.init(r);
 	//map = new PyxelMap(std::string("outsidetiles"));
 	this->map = new ArrayMap();
 	this->plr = new Player();
@@ -99,7 +100,7 @@ void Game::update() {
 
 void Game::render() {
 	this->SetRendererColor(barrier);
-	SDL_RenderClear(renderer);
+	renderer.Clear();
 	map->DrawMap();
 
 	for (auto& o : this->objs) {
@@ -108,7 +109,7 @@ void Game::render() {
 		}
 	}
 
-	SDL_RenderPresent(renderer);
+	renderer.Present();
 }
 
 void Game::garbageCollect() {
@@ -126,7 +127,7 @@ void Game::clean() {
 	Music::StopMP3();
 	Music::UnloadMP3(lvl1music);
 	SoundEffect::UnloadSFX();
-	SDL_DestroyRenderer(renderer);
+	renderer.Clean();
 	SDL_DestroyWindow(wndw);
 	Mix_CloseAudio();
 	Mix_Quit();

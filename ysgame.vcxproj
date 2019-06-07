@@ -151,6 +151,7 @@
     <ClCompile Include="src\Vector2D.cpp" />
     <ClCompile Include="src\input\XBOXController.cpp" />
     <ClCompile Include="src\sword\Sword.cpp" />
+    <ClCompile Include="src\YRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CompositeObject.hpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="src\util\numbers.h" />
     <ClInclude Include="src\Vector2D.hpp" />
     <ClInclude Include="src\sword\Sword.hpp" />
+    <ClInclude Include="src\YRenderer.hpp" />
     <ClInclude Include="third_party\nlohmann\json.hpp" />
     <ClInclude Include="third_party\rapidjson\allocators.h" />
     <ClInclude Include="third_party\rapidjson\cursorstreamwrapper.h" />
