@@ -19,23 +19,16 @@ public:
 	int Clear() { return  SDL_RenderClear(renderer); }
 	void Present() { SDL_RenderPresent(renderer); }
 	int Copy(SDL_Texture* t, const SDL_Rect* srcrect, const SDL_Rect* dstrect) {
-		// adjust based on origin
-		return SDL_RenderCopy(renderer, t, srcrect, dstrect);
+		return CopyEx(t, srcrect, dstrect, 0, NULL, SDL_FLIP_NONE);
 	}
 	int CopyEx(SDL_Texture* texture,
 			const SDL_Rect* srcrect,
 			const SDL_Rect* dstrect,
 			const double angle,
 			const SDL_Point* center,
-			const SDL_RendererFlip flip) {
-		// adjust based on origin
-		return SDL_RenderCopyEx(renderer, texture, srcrect, dstrect, angle, center, flip);
-	}
+			const SDL_RendererFlip flip);
 
-	int FillRect(const SDL_Rect* rect) {
-		// adjust based on origin
-		return SDL_RenderFillRect(renderer, rect);
-	}
+	int FillRect(const SDL_Rect* rect);
 
 	SDL_Texture* CreateTextureFromSurface(SDL_Surface* surface) {
 		return SDL_CreateTextureFromSurface(renderer, surface);
@@ -46,20 +39,15 @@ public:
 	}
 
 	void PushOrigin(Vector2f o) {
-		// Take origin and push it on origins
-		// Add origin to o
-		// set origin to o
+		contextStack.push_back(o);
+		origin = origin + o;
 	}
-	void PopOrigin() {
-		// remove most recent from origins
-		// set origin to that
-		// error/assert if origins is empty
-	}
+	void PopOrigin();
 
 private:
 	SDL_Renderer* renderer;
 
 	Vector2f origin;
-	std::vector<Vector2f> origins;
+	std::vector<Vector2f> contextStack;
 };
 
