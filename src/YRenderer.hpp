@@ -38,8 +38,12 @@ public:
 		return SDL_SetRenderDrawColor(renderer, r, g, b, a);
 	}
 
+	int SetDrawColor(SDL_Color *c) {
+		return SDL_SetRenderDrawColor(renderer, c->r, c->g, c->b, c->a);
+	}
+
 	void PushOrigin(Vector2f o) {
-		contextStack.push_back(o);
+		contextStack.push_back(origin);
 		origin = origin + o;
 	}
 	void PopOrigin();

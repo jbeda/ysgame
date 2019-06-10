@@ -1,3 +1,4 @@
+#include "Game.hpp"
 #include "CompositeObject.hpp"
 #include <SDL.h>
 void CompositeObject::Update() {
@@ -7,12 +8,12 @@ void CompositeObject::Update() {
 	this->objs.remove_if([](auto& o) { return o->IsDead(); });
 }
 void CompositeObject::Render() {
+	gGame->renderer.PushOrigin(pos);
 	for (auto& o : this->objs) {
-		o->Render(this->pos);
+		o->Render();
 	}
+	gGame->renderer.PopOrigin();
 }
-void CompositeObject::AddObject(CompositeChild* o) {
-	this->objs.push_back(std::unique_ptr<CompositeChild>(o));
+void CompositeObject::AddObject(GameObject* o) {
+	this->objs.push_back(std::unique_ptr<GameObject>(o));
 }
-void CompositeChild::Update() { }
-void CompositeChild::Render(Vector2f pos) { }

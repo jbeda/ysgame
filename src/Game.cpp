@@ -14,10 +14,9 @@
 #include "input/Controller.hpp"
 #include "input/XBOXController.hpp"
 #include "items/Item.hpp"
+#include "ParticleSystem.hpp"
 
 Music* lvl1music = NULL;
-
-YColor barrier = { 0, 0, 0, 0 };
 
 Game* gGame = NULL;
 
@@ -29,6 +28,11 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 #ifdef DEBUGENABLED
 	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
 #endif
+
+	// Initialize the Random Number Generator
+	std::random_device rd;
+	randGen.seed(rd());
+
 	if (SDL_Init(SDL_INIT_EVERYTHING & ~(SDL_INIT_HAPTIC | SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER)) != 0)
 	{
 		printf("SDL_Init could not initialize! Error: %s\n", SDL_GetError());
@@ -74,12 +78,14 @@ ReturnCode Game::init(const char* title, int x, int y, int w, int h, bool fullsc
 		SDL_DestroyWindow(wndw);
 		return CODE_RED;
 	}
+	SDL_SetRenderDrawBlendMode(r, SDL_BLENDMODE_BLEND);
 	renderer.init(r);
 	//map = new PyxelMap(std::string("outsidetiles"));
 	this->map = new ArrayMap();
 	this->plr = new Player();
 	this->addObject(this->plr);
 	this->addObject(new Enemy(50, 50));
+	this->addObject(new ParticleSystem(Vector2f(50, 50), 100, 1));
 	// test items {
 	this->addObject(new RapidThrowInit(4, 4));
 	this->addObject(new HomingKnifeInit(6, 4));
@@ -99,7 +105,6 @@ void Game::update() {
 }
 
 void Game::render() {
-	this->SetRendererColor(barrier);
 	renderer.Clear();
 	map->DrawMap();
 

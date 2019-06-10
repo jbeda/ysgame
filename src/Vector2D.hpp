@@ -9,6 +9,7 @@ public:
 	Vector2f() : x(0), y(0) {}
 	Vector2f(float x_, float y_) : x(x_), y(y_) {}
 
+	// Angle is in radians
 	static Vector2f FromAngle(float angle, float mag = 1);
 
 	Vector2f& Add(const Vector2f& vec) { x += vec.x; y += vec.y; return *this; }
